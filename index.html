@@ -49,24 +49,62 @@
             background-color: #218838;
         }
 
-        #form-section, #payment-section {
+        /* Hidden by default */
+        .payment-section {
             display: none;
-            margin-top: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
+            margin-top: 30px;
         }
 
-        #form-section input {
-            width: calc(100% - 20px);
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-field input {
+            width: 100%;
             padding: 10px;
-            margin: 10px 0;
+            font-size: 14px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
 
-        #form-section button {
+        .payment-methods {
+            margin-top: 20px;
+        }
+
+        .payment-methods img {
+            width: 50px;
+            height: auto;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .payment-methods img:hover {
+            transform: scale(1.1);
+        }
+
+        .payment-protocol {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .payment-protocol p {
+            margin: 10px 0;
+        }
+
+        .copy-icon {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .process-button {
+            margin-top: 20px;
+        }
+
+        .process-button button {
             padding: 10px 20px;
             font-size: 16px;
             color: #fff;
@@ -77,34 +115,8 @@
             transition: background-color 0.3s;
         }
 
-        #form-section button:hover {
+        .process-button button:hover {
             background-color: #0056b3;
-        }
-
-        #payment-section h1 {
-            color: #333;
-        }
-
-        .payment-methods {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .payment-methods div {
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .payment-methods img {
-            width: 50px;
-            height: 50px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .payment-methods p {
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -119,32 +131,43 @@
         </div>
     </div>
 
-    <div id="form-section">
-        <h2>Payment Information</h2>
-        <form id="paymentForm">
-            <input type="text" id="name" name="name" placeholder="Name" required>
-            <input type="tel" id="number" name="number" placeholder="Phone Number" required>
-            <input type="text" id="address" name="address" placeholder="Address">
-            <input type="email" id="email" name="email" placeholder="Email">
-            <button type="button" onclick="showPaymentGateway()">Proceed to Payment</button>
-        </form>
-    </div>
-
-    <div id="payment-section">
+    <div class="payment-section" id="paymentSection">
         <h1>Payment</h1>
-        <h2>Select Method</h2>
-        <div class="payment-methods">
-            <div>
-                <img src="https://example.com/icon1.png" alt="Method 1">
-                <p>Method 1</p>
+        <h2>Total Payment: <span id="totalPrice"></span></h2>
+        <form id="paymentForm">
+            <div class="form-field">
+                <input type="text" id="name" placeholder="Name" required>
             </div>
-            <div>
-                <img src="https://example.com/icon2.png" alt="Method 2">
-                <p>Method 2</p>
+            <div class="form-field">
+                <input type="tel" id="number" placeholder="Number" required>
             </div>
-            <div>
-                <img src="https://example.com/icon3.png" alt="Method 3">
-                <p>Method 3</p>
+            <div class="form-field">
+                <input type="text" id="address" placeholder="Address">
+            </div>
+            <div class="form-field">
+                <input type="email" id="email" placeholder="Email">
+            </div>
+            <div class="payment-methods">
+                <h3>Select Method</h3>
+                <img src="bkash-icon.png" alt="BKash" onclick="showProtocol('bkash')">
+                <img src="nagad-icon.png" alt="Nagad" onclick="showProtocol('nagad')">
+                <img src="rocket-icon.png" alt="Rocket" onclick="showProtocol('rocket')">
+            </div>
+        </form>
+        <div id="paymentProtocol" class="payment-protocol">
+            <h4 id="protocolTitle">Payment Protocol</h4>
+            <p>1. Open your <span id="selectedMethod">selected method</span> app.</p>
+            <p>2. Go to the Send Money option.</p>
+            <p>3. Enter the amount shown above.</p>
+            <p>4. Use the following number: <span id="paymentNumber">017xxxxxxxx</span> <span class="copy-icon" onclick="copyNumber()">Copy</span></p>
+            <p>5. Complete the transaction.</p>
+            <p>6. Note down the Transaction ID.</p>
+            <p>7. Enter the Transaction ID in the box below:</p>
+            <div class="form-field">
+                <input type="text" id="trxId" placeholder="Trx ID">
+            </div>
+            <div class="process-button">
+                <button onclick="processOrder()">Process to Order</button>
             </div>
         </div>
     </div>
@@ -157,24 +180,50 @@
             document.getElementById('itemName').innerHTML = `<span>Item:</span> ${checkoutItem.name}`;
             document.getElementById('itemPrice').innerHTML = `<span>Price:</span> ${checkoutItem.price} BDT`;
             document.getElementById('itemUID').innerHTML = `<span>UID:</span> ${checkoutItem.uid}`;
+            document.getElementById('totalPrice').textContent = checkoutItem.price + ' BDT';
         } else {
             alert('No item selected.');
         }
 
         function confirmPurchase() {
-            document.getElementById('form-section').style.display = 'block';
+            // Show the payment section after confirming purchase
+            document.getElementById('paymentSection').style.display = 'block';
         }
 
-        function showPaymentGateway() {
+        function showProtocol(method) {
+            // Display payment protocol based on selected method
+            document.getElementById('paymentProtocol').style.display = 'block';
+            document.getElementById('selectedMethod').textContent = method;
+            // Set payment number (this would be dynamic in real use cases)
+            document.getElementById('paymentNumber').textContent = '017xxxxxxxx';
+        }
+
+        function copyNumber() {
+            const number = document.getElementById('paymentNumber').textContent;
+            navigator.clipboard.writeText(number).then(() => {
+                alert('Number copied to clipboard');
+            });
+        }
+
+        function processOrder() {
             const name = document.getElementById('name').value;
             const number = document.getElementById('number').value;
+            const trxId = document.getElementById('trxId').value;
 
-            if (name === '' || number === '') {
-                alert('Please fill out the required fields: Name and Phone Number.');
+            if (!name || !number) {
+                alert('Please fill in the required fields (Name, Number).');
                 return;
             }
 
-            document.getElementById('payment-section').style.display = 'block';
+            if (!trxId) {
+                alert('Please enter the Transaction ID.');
+                return;
+            }
+
+            // Process order (e.g., send data to server)
+            alert('Order processed successfully!');
+            localStorage.removeItem('checkoutItem');
+            // Optionally, redirect or clear form
         }
     </script>
 </body>
