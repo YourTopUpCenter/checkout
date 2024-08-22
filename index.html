@@ -6,50 +6,63 @@
     <title>Checkout</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
             text-align: center;
             padding: 50px;
+            overflow-x: hidden;
         }
 
         .checkout-container {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 400px;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
             margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.7);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .checkout-container:hover {
+            transform: scale(1.05);
         }
 
         h1 {
-            color: #333;
+            color: #0affaa;
             margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px #0affaa;
         }
 
         .checkout-item {
             margin-bottom: 20px;
+            font-size: 1.2rem;
+            animation: fadeIn 1s ease-out;
         }
 
         .checkout-item span {
             font-weight: bold;
+            color: #00ffcc;
         }
 
         .confirm-button button {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #28a745;
+            padding: 12px 25px;
+            font-size: 18px;
+            color: #000;
+            background-color: #00ffcc;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .confirm-button button:hover {
-            background-color: #218838;
+            background-color: #00cc99;
+            box-shadow: 0 0 15px #00ffcc;
         }
 
-        /* Hidden by default */
         .payment-section {
             display: none;
             margin-top: 30px;
@@ -57,45 +70,59 @@
 
         .form-field {
             margin-bottom: 15px;
+            animation: fadeIn 1.5s ease-out;
         }
 
         .form-field input {
             width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #555;
+            border-radius: 10px;
+            background-color: #222;
+            color: #fff;
+            box-shadow: inset 0 0 10px #00ffcc;
+            transition: box-shadow 0.3s;
+        }
+
+        .form-field input:focus {
+            box-shadow: inset 0 0 15px #00ffcc;
         }
 
         .payment-methods {
             margin-top: 20px;
+            animation: fadeIn 2s ease-out;
         }
 
         .payment-methods img {
-            width: 50px;
+            width: 60px;
             height: auto;
-            margin: 0 10px;
+            margin: 0 15px;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.3s, filter 0.3s;
+            filter: drop-shadow(0 0 10px #00ffcc);
         }
 
         .payment-methods img:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 20px #00ffcc);
         }
 
         .payment-protocol {
             display: none;
             margin-top: 20px;
             text-align: left;
+            animation: fadeIn 2.5s ease-out;
         }
 
         .payment-protocol p {
             margin: 10px 0;
+            font-size: 1rem;
         }
 
         .copy-icon {
             cursor: pointer;
-            color: blue;
+            color: #0affaa;
             text-decoration: underline;
             margin-left: 10px;
         }
@@ -105,18 +132,76 @@
         }
 
         .process-button button {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007bff;
+            padding: 12px 25px;
+            font-size: 18px;
+            color: #000;
+            background-color: #00ffcc;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .process-button button:hover {
-            background-color: #0056b3;
+            background-color: #00cc99;
+            box-shadow: 0 0 15px #00ffcc;
+        }
+
+        .platforms {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .platforms h3 {
+            font-size: 1.5rem;
+            color: #0affaa;
+            margin-bottom: 20px;
+        }
+
+        .platforms img {
+            width: 60px;
+            height: auto;
+            margin: 0 15px;
+            cursor: pointer;
+            transition: transform 0.3s, filter 0.3s;
+            filter: drop-shadow(0 0 10px #00ffcc);
+        }
+
+        .platforms img:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 20px #00ffcc);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            .checkout-container {
+                padding: 20px;
+            }
+
+            .form-field input {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .confirm-button button, .process-button button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -172,6 +257,15 @@
         </div>
     </div>
 
+    <div class="platforms" id="platforms">
+        <h3>Select Platform</h3>
+        <img src="messenger-icon.png" alt="Messenger" onclick="sendMessage('messenger')">
+        <img src="whatsapp-icon.png" alt="WhatsApp" onclick="sendMessage('whatsapp')">
+        <img src="facebook-icon.png" alt="Facebook" onclick="sendMessage('facebook')">
+        <img src="telegram-icon.png" alt="Telegram" onclick="sendMessage('telegram')">
+        <img src="imo-icon.png" alt="IMO" onclick="sendMessage('imo')">
+    </div>
+
     <script>
         // Retrieve item info from localStorage
         const checkoutItem = JSON.parse(localStorage.getItem('checkoutItem'));
@@ -220,10 +314,51 @@
                 return;
             }
 
-            // Process order (e.g., send data to server)
-            alert('Order processed successfully!');
-            localStorage.removeItem('checkoutItem');
-            // Optionally, redirect or clear form
+            // Show platforms after processing the order
+            document.getElementById('platforms').style.display = 'block';
+        }
+
+        function sendMessage(platform) {
+            const name = document.getElementById('name').value;
+            const number = document.getElementById('number').value;
+            const address = document.getElementById('address').value;
+            const email = document.getElementById('email').value;
+            const trxId = document.getElementById('trxId').value;
+            const item = document.getElementById('itemName').textContent.split(': ')[1];
+            const price = document.getElementById('itemPrice').textContent.split(': ')[1];
+            const uid = document.getElementById('itemUID').textContent.split(': ')[1];
+            
+            const message = `Hi, আমি নতুন একটি পন্য কিনতে চাই, নিচে সকল তথ্য দেওয়া হলো
+
+Name : ${name}
+Number : ${number}
+Address: ${address}
+Email : ${email}
+U ID: ${uid}
+Item : ${item}
+Price: ${price}
+Payment Method: ${document.getElementById('selectedMethod').textContent}
+Trx ID : ${trxId}
+
+তারাতারি অর্ডার টি কম্পিট করে আমাকে জানান। ধন্যবাদ`;
+
+            switch (platform) {
+                case 'messenger':
+                    window.open(`https://www.messenger.com/t/your-profile-id?message=${encodeURIComponent(message)}`);
+                    break;
+                case 'whatsapp':
+                    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
+                    break;
+                case 'facebook':
+                    window.open(`https://www.facebook.com/messages/t/your-profile-id?message=${encodeURIComponent(message)}`);
+                    break;
+                case 'telegram':
+                    window.open(`https://t.me/your-profile-id?start=${encodeURIComponent(message)}`);
+                    break;
+                case 'imo':
+                    window.open(`imo://chat?text=${encodeURIComponent(message)}`);
+                    break;
+            }
         }
     </script>
 </body>
