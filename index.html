@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .checkout-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .checkout-item {
+            margin-bottom: 20px;
+        }
+
+        .checkout-item span {
+            font-weight: bold;
+        }
+
+        .confirm-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-button button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <div class="checkout-item" id="itemName">Item: </div>
+        <div class="checkout-item" id="itemPrice">Price: </div>
+        <div class="checkout-item" id="itemUID">UID: </div>
+        <div class="confirm-button">
+            <button onclick="confirmPurchase()">Confirm Purchase</button>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve item info from localStorage
+        const checkoutItem = JSON.parse(localStorage.getItem('checkoutItem'));
+
+        if (checkoutItem) {
+            document.getElementById('itemName').innerHTML = `<span>Item:</span> ${checkoutItem.name}`;
+            document.getElementById('itemPrice').innerHTML = `<span>Price:</span> ${checkoutItem.price} BDT`;
+            document.getElementById('itemUID').innerHTML = `<span>UID:</span> ${checkoutItem.uid}`;
+        } else {
+            alert('No item selected.');
+        }
+
+        function confirmPurchase() {
+            alert('Purchase confirmed!');
+            // Here you can add code to process the purchase
+            // e.g., send data to the server, clear localStorage, etc.
+            localStorage.removeItem('checkoutItem');
+        }
+    </script>
+</body>
+  </html>
