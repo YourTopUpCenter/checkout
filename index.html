@@ -49,12 +49,16 @@
             background-color: #218838;
         }
 
-        #payment-section {
+        #form-section, #payment-section {
             display: none;
             margin-top: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
         }
 
-        #payment-section input {
+        #form-section input {
             width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
@@ -62,7 +66,7 @@
             border-radius: 5px;
         }
 
-        #payment-section button {
+        #form-section button {
             padding: 10px 20px;
             font-size: 16px;
             color: #fff;
@@ -73,8 +77,34 @@
             transition: background-color 0.3s;
         }
 
-        #payment-section button:hover {
+        #form-section button:hover {
             background-color: #0056b3;
+        }
+
+        #payment-section h1 {
+            color: #333;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .payment-methods div {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .payment-methods img {
+            width: 50px;
+            height: 50px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .payment-methods p {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -89,15 +119,34 @@
         </div>
     </div>
 
-    <div id="payment-section" class="checkout-container">
+    <div id="form-section">
         <h2>Payment Information</h2>
         <form id="paymentForm">
             <input type="text" id="name" name="name" placeholder="Name" required>
             <input type="tel" id="number" name="number" placeholder="Phone Number" required>
             <input type="text" id="address" name="address" placeholder="Address">
             <input type="email" id="email" name="email" placeholder="Email">
-            <button type="button" onclick="processPayment()">Proceed to Payment</button>
+            <button type="button" onclick="showPaymentGateway()">Proceed to Payment</button>
         </form>
+    </div>
+
+    <div id="payment-section">
+        <h1>Payment</h1>
+        <h2>Select Method</h2>
+        <div class="payment-methods">
+            <div>
+                <img src="https://example.com/icon1.png" alt="Method 1">
+                <p>Method 1</p>
+            </div>
+            <div>
+                <img src="https://example.com/icon2.png" alt="Method 2">
+                <p>Method 2</p>
+            </div>
+            <div>
+                <img src="https://example.com/icon3.png" alt="Method 3">
+                <p>Method 3</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -113,11 +162,10 @@
         }
 
         function confirmPurchase() {
-            document.querySelector('.checkout-container').style.display = 'none';
-            document.getElementById('payment-section').style.display = 'block';
+            document.getElementById('form-section').style.display = 'block';
         }
 
-        function processPayment() {
+        function showPaymentGateway() {
             const name = document.getElementById('name').value;
             const number = document.getElementById('number').value;
 
@@ -126,11 +174,7 @@
                 return;
             }
 
-            alert('Proceeding to payment gateway...');
-            // Add your payment gateway integration code here
-
-            // Clear the localStorage after payment
-            localStorage.removeItem('checkoutItem');
+            document.getElementById('payment-section').style.display = 'block';
         }
     </script>
 </body>
