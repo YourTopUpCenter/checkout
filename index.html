@@ -268,54 +268,65 @@
 
     <script>
         // Retrieve item info from localStorage
-        const checkoutItem = JSON.parse(localStorage.getItem('checkoutItem'));
-
-        if (checkoutItem) {
-            document.getElementById('itemName').innerHTML = `<span>Item:</span> ${checkoutItem.name}`;
-            document.getElementById('itemPrice').innerHTML = `<span>Price:</span> ${checkoutItem.price} BDT`;
-            document.getElementById('itemUID').innerHTML = `<span>UID:</span> ${checkoutItem.uid}`;
-            document.getElementById('totalPrice').textContent = checkoutItem.price + ' BDT';
-        } else {
-            alert('No item selected.');
-        }
+        const checkoutItem = JSON.parse(localStorage.getItem('checkoutItem')) || {};
+        document.getElementById('itemName').textContent = `Item: ${checkoutItem.item || 'N/A'}`;
+        document.getElementById('itemPrice').textContent = `Price: ${checkoutItem.price || 'N/A'}`;
+        document.getElementById('itemUID').textContent = `UID: ${checkoutItem.uid || 'N/A'}`;
 
         function confirmPurchase() {
-            // Show the payment section after confirming purchase
+            document.querySelector('.checkout-container').style.display = 'none';
             document.getElementById('paymentSection').style.display = 'block';
         }
 
         function showProtocol(method) {
-            // Display payment protocol based on selected method
+            const protocols = {
+                bkash: { title: 'BKash', number: '017xxxxxxxx' },
+                nagad: { title: 'Nagad', number: '018xxxxxxxx' },
+                rocket: { title: 'Rocket', number: '019xxxxxxxx' }
+            };
             document.getElementById('paymentProtocol').style.display = 'block';
-            document.getElementById('selectedMethod').textContent = method;
-            // Set payment number (this would be dynamic in real use cases)
-            document.getElementById('paymentNumber').textContent = '017xxxxxxxx';
+            document.getElementById('selectedMethod').textContent = protocols[method].title;
+            document.getElementById('paymentNumber').textContent = protocols[method].number;
+            document.getElementById('protocolTitle').textContent = `${protocols[method].title} Payment Protocol`;
         }
 
         function copyNumber() {
             const number = document.getElementById('paymentNumber').textContent;
             navigator.clipboard.writeText(number).then(() => {
-                alert('Number copied to clipboard');
+                alert('Number copied to clipboard!');
             });
         }
 
         function processOrder() {
             const name = document.getElementById('name').value;
             const number = document.getElementById('number').value;
+            const address = document.getElementById('address').value;
+            const email = document.getElementById('email').value;
             const trxId = document.getElementById('trxId').value;
+            const item = document.getElementById('itemName').textContent.split(': ')[1];
+            const price = document.getElementById('itemPrice').textContent.split(': ')[1];
+            const uid = document.getElementById('itemUID').textContent.split(': ')[1];
 
-            if (!name || !number) {
-                alert('Please fill in the required fields (Name, Number).');
-                return;
-            }
+            const message = `Hi, আমি নতুন একটি পন্য কিনতে চাই, নিচে সকল তথ্য দেওয়া হলো
 
-            if (!trxId) {
-                alert('Please enter the Transaction ID.');
-                return;
-            }
+Name : ${name}
+Number : ${number}
+Address: ${address}
+Email : ${email}
+U ID: ${uid}
+Item : ${item}
+Price: ${price}
+Payment Method: ${document.getElementById('selectedMethod').textContent}
+Trx ID : ${trxId}
 
-            // Show platforms after processing the order
+তারাতারি অর্ডার টি কম্পিট করে আমাকে জানান। ধন্যবাদ`;
+
+            document.getElementById('paymentSection').style.display = 'none';
             document.getElementById('platforms').style.display = 'block';
+
+            // Optional: Calculate total price
+            const totalPrice = parseFloat(price) || 0;
+            document.getElementById('totalPrice').textContent = `৳ ${totalPrice.toFixed(2)}`;
         }
 
         function sendMessage(platform) {
@@ -327,7 +338,7 @@
             const item = document.getElementById('itemName').textContent.split(': ')[1];
             const price = document.getElementById('itemPrice').textContent.split(': ')[1];
             const uid = document.getElementById('itemUID').textContent.split(': ')[1];
-            
+
             const message = `Hi, আমি নতুন একটি পন্য কিনতে চাই, নিচে সকল তথ্য দেওয়া হলো
 
 Name : ${name}
@@ -350,13 +361,13 @@ Trx ID : ${trxId}
                     window.open(`https://wa.me/+8801781146747?text=${encodeURIComponent(message)}`);
                     break;
                 case 'facebook':
-                    window.open(`https://www.facebook.com/messages/t/yourtopupcenterofficialnews?message=${encodeURIComponent(message)}`);
+                    alert('Direct messaging link for Facebook is not supported. Please use Messenger or other platforms.');
                     break;
                 case 'telegram':
                     window.open(`https://t.me/YTC24_bot?start=${encodeURIComponent(message)}`);
                     break;
                 case 'imo':
-                    window.open(`imo://chat?text=${encodeURIComponent(message)}`);
+                    alert('IMO does not support direct messaging via URL.');
                     break;
             }
         }
