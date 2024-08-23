@@ -211,6 +211,7 @@
         <div class="checkout-item" id="itemName">Item: </div>
         <div class="checkout-item" id="itemPrice">Price: </div>
         <div class="checkout-item" id="itemUID">UID: </div>
+        <div class="checkout-item" id="productsName">Products: </div>
         <div class="confirm-button">
             <button onclick="confirmPurchase()">Confirm Purchase</button>
         </div>
@@ -267,110 +268,74 @@
     </div>
 
     <script>
-        // Retrieve item info from localStorage
-        const checkoutItem = JSON.parse(localStorage.getItem('checkoutItem')) || {};
-        document.getElementById('itemName').textContent = `Item: ${checkoutItem.item || 'N/A'}`;
-        document.getElementById('itemPrice').textContent = `Price: ${checkoutItem.price || 'N/A'}`;
-        document.getElementById('itemUID').textContent = `UID: ${checkoutItem.uid || 'N/A'}`;
-
         function confirmPurchase() {
-            document.querySelector('.checkout-container').style.display = 'none';
-            document.getElementById('paymentSection').style.display = 'block';
+            // Display the payment section and scroll to it
+            document.getElementById("paymentSection").style.display = "block";
+            document.getElementById("totalPrice").textContent = document.getElementById("itemPrice").textContent.split(": ")[1];
+            window.scrollTo({ top: document.getElementById("paymentSection").offsetTop, behavior: 'smooth' });
         }
 
         function showProtocol(method) {
-            const protocols = {
-                bkash: { title: 'BKash', number: '017xxxxxxxx' },
-                nagad: { title: 'Nagad', number: '018xxxxxxxx' },
-                rocket: { title: 'Rocket', number: '019xxxxxxxx' }
-            };
-            document.getElementById('paymentProtocol').style.display = 'block';
-            document.getElementById('selectedMethod').textContent = protocols[method].title;
-            document.getElementById('paymentNumber').textContent = protocols[method].number;
-            document.getElementById('protocolTitle').textContent = `${protocols[method].title} Payment Protocol`;
-        }
+            // Show the payment protocol based on selected method
+            const paymentProtocol = document.getElementById("paymentProtocol");
+            const selectedMethod = document.getElementById("selectedMethod");
+            const paymentNumber = document.getElementById("paymentNumber");
 
-        function copyNumber() {
-            const number = document.getElementById('paymentNumber').textContent;
-            navigator.clipboard.writeText(number).then(() => {
-                alert('Number copied to clipboard!');
-            });
+            selectedMethod.textContent = method.charAt(0).toUpperCase() + method.slice(1);
+            if (method === 'bkash') {
+                paymentNumber.textContent = '017xxxxxxxx';
+            } else if (method === 'nagad') {
+                paymentNumber.textContent = '018xxxxxxxx';
+            } else if (method === 'rocket') {
+                paymentNumber.textContent = '019xxxxxxxx';
+            }
+
+            paymentProtocol.style.display = "block";
+            window.scrollTo({ top: paymentProtocol.offsetTop, behavior: 'smooth' });
         }
 
         function processOrder() {
-            const name = document.getElementById('name').value;
-            const number = document.getElementById('number').value;
-            const address = document.getElementById('address').value;
-            const email = document.getElementById('email').value;
-            const trxId = document.getElementById('trxId').value;
-            const item = document.getElementById('itemName').textContent.split(': ')[1];
-            const price = document.getElementById('itemPrice').textContent.split(': ')[1];
-            const uid = document.getElementById('itemUID').textContent.split(': ')[1];
-
-            const message = `Hi, আমি নতুন একটি পন্য কিনতে চাই, নিচে সকল তথ্য দেওয়া হলো
-
-Name : ${name}
-Number : ${number}
-Address: ${address}
-Email : ${email}
-U ID: ${uid}
-Item : ${item}
-Price: ${price}
-Payment Method: ${document.getElementById('selectedMethod').textContent}
-Trx ID : ${trxId}
-
-তারাতারি অর্ডার টি কম্পিট করে আমাকে জানান। ধন্যবাদ`;
-
-            document.getElementById('paymentSection').style.display = 'none';
-            document.getElementById('platforms').style.display = 'block';
-
-            // Optional: Calculate total price
-            const totalPrice = parseFloat(price) || 0;
-            document.getElementById('totalPrice').textContent = `৳ ${totalPrice.toFixed(2)}`;
+            // Hide the payment form and show platform selection
+            document.getElementById("paymentForm").style.display = "none";
+            document.getElementById("platforms").style.display = "block";
+            window.scrollTo({ top: document.getElementById("platforms").offsetTop, behavior: 'smooth' });
         }
 
         function sendMessage(platform) {
-            const name = document.getElementById('name').value;
-            const number = document.getElementById('number').value;
-            const address = document.getElementById('address').value;
-            const email = document.getElementById('email').value;
-            const trxId = document.getElementById('trxId').value;
-            const item = document.getElementById('itemName').textContent.split(': ')[1];
-            const price = document.getElementById('itemPrice').textContent.split(': ')[1];
-            const uid = document.getElementById('itemUID').textContent.split(': ')[1];
-
-            const message = `Hi, আমি নতুন একটি পন্য কিনতে চাই, নিচে সকল তথ্য দেওয়া হলো
-
-Name : ${name}
-Number : ${number}
-Address: ${address}
-Email : ${email}
-U ID: ${uid}
-Item : ${item}
-Price: ${price}
-Payment Method: ${document.getElementById('selectedMethod').textContent}
-Trx ID : ${trxId}
-
-তারাতারি অর্ডার টি কম্পিট করে আমাকে জানান। ধন্যবাদ`;
-
+            let url = '';
             switch (platform) {
                 case 'messenger':
-                    window.open(`https://m.me/yourtopupcenterofficial?message=${encodeURIComponent(message)}`);
+                    url = 'https://m.me/yourtopupcenterofficial';
                     break;
                 case 'whatsapp':
-                    window.open(`https://wa.me/+8801781146747?text=${encodeURIComponent(message)}`);
+                    url = 'https://wa.me/+8801781146747';
                     break;
                 case 'facebook':
-                    alert('Direct messaging link for Facebook is not supported. Please use Messenger or other platforms.');
+                    url = 'https://facebook.com/yourtopupcenterofficialnews';
                     break;
                 case 'telegram':
-                    window.open(`https://t.me/YTC24_bot?start=${encodeURIComponent(message)}`);
+                    url = 'https://t.me/YTC24_bot';
                     break;
                 case 'imo':
-                    alert('IMO does not support direct messaging via URL.');
+                    url = 'https://imolink.com/yourtopupcenterimo';
                     break;
             }
+            window.open(url, '_blank');
         }
+
+        function copyNumber() {
+            // Copy payment number to clipboard
+            const paymentNumber = document.getElementById("paymentNumber").textContent;
+            navigator.clipboard.writeText(paymentNumber).then(() => {
+                alert("Payment number copied to clipboard!");
+            });
+        }
+
+        // Populate the checkout item details
+        document.getElementById("itemName").textContent = "Item: TopUp Package";
+        document.getElementById("itemPrice").textContent = "Price: $50";
+        document.getElementById("itemUID").textContent = "UID: 123456789";
+        document.getElementById("productsName").textContent = "Products: Example Product Name";
     </script>
 </body>
 </html>
