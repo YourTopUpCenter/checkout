@@ -266,76 +266,69 @@
         <img src="telegram-icon.png" alt="Telegram" onclick="sendMessage('telegram')">
         <img src="imo-icon.png" alt="IMO" onclick="sendMessage('imo')">
     </div>
-
     <script>
-        function confirmPurchase() {
-            // Display the payment section and scroll to it
-            document.getElementById("paymentSection").style.display = "block";
-            document.getElementById("totalPrice").textContent = document.getElementById("itemPrice").textContent.split(": ")[1];
-            window.scrollTo({ top: document.getElementById("paymentSection").offsetTop, behavior: 'smooth' });
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkoutItem = JSON.parse(localStorage.getItem('checkoutItem'));
+
+        if (checkoutItem) {
+            document.getElementById('itemName').textContent = `Item: ${checkoutItem.itemName}`;
+            document.getElementById('itemPrice').textContent = `Price: ${checkoutItem.price} BDT`;
+            document.getElementById('itemUID').textContent = `UID: ${checkoutItem.uid}`;
+            document.getElementById('productsName').textContent = `Product: ${checkoutItem.productName}`;
+        }
+    });
+
+    function confirmPurchase() {
+        document.getElementById("paymentSection").style.display = "block";
+        document.getElementById("totalPrice").textContent = document.getElementById("itemPrice").textContent.split(": ")[1];
+        window.scrollTo({ top: document.getElementById("paymentSection").offsetTop, behavior: 'smooth' });
+    }
+
+    function showProtocol(method) {
+        const paymentProtocol = document.getElementById("paymentProtocol");
+        const selectedMethod = document.getElementById("selectedMethod");
+        const paymentNumber = document.getElementById("paymentNumber");
+
+        selectedMethod.textContent = method.charAt(0).toUpperCase() + method.slice(1);
+        if (method === 'bkash') {
+            paymentNumber.textContent = '017xxxxxxxx';
+        } else if (method === 'nagad') {
+            paymentNumber.textContent = '018xxxxxxxx';
+        } else if (method === 'rocket') {
+            paymentNumber.textContent = '019xxxxxxxx';
         }
 
-        function showProtocol(method) {
-            // Show the payment protocol based on selected method
-            const paymentProtocol = document.getElementById("paymentProtocol");
-            const selectedMethod = document.getElementById("selectedMethod");
-            const paymentNumber = document.getElementById("paymentNumber");
+        paymentProtocol.style.display = "block";
+        window.scrollTo({ top: paymentProtocol.offsetTop, behavior: 'smooth' });
+    }
 
-            selectedMethod.textContent = method.charAt(0).toUpperCase() + method.slice(1);
-            if (method === 'bkash') {
-                paymentNumber.textContent = '017xxxxxxxx';
-            } else if (method === 'nagad') {
-                paymentNumber.textContent = '018xxxxxxxx';
-            } else if (method === 'rocket') {
-                paymentNumber.textContent = '019xxxxxxxx';
-            }
+    function processOrder() {
+        document.getElementById("paymentForm").style.display = "none";
+        document.getElementById("platforms").style.display = "block";
+        window.scrollTo({ top: document.getElementById("platforms").offsetTop, behavior: 'smooth' });
+    }
 
-            paymentProtocol.style.display = "block";
-            window.scrollTo({ top: paymentProtocol.offsetTop, behavior: 'smooth' });
+    function sendMessage(platform) {
+        let url = '';
+        switch (platform) {
+            case 'messenger':
+                url = 'https://m.me/yourtopupcenterofficial';
+                break;
+            case 'whatsapp':
+                url = 'https://wa.me/+8801781146747';
+                break;
+            case 'facebook':
+                url = 'https://facebook.com/yourtopupcenterofficialnews';
+                break;
+            case 'telegram':
+                url = 'https://t.me/YTC24_bot';
+                break;
+            default:
+                return;
         }
+        window.open(url, '_blank');
+    }
+</script>
 
-        function processOrder() {
-            // Hide the payment form and show platform selection
-            document.getElementById("paymentForm").style.display = "none";
-            document.getElementById("platforms").style.display = "block";
-            window.scrollTo({ top: document.getElementById("platforms").offsetTop, behavior: 'smooth' });
-        }
-
-        function sendMessage(platform) {
-            let url = '';
-            switch (platform) {
-                case 'messenger':
-                    url = 'https://m.me/yourtopupcenterofficial';
-                    break;
-                case 'whatsapp':
-                    url = 'https://wa.me/+8801781146747';
-                    break;
-                case 'facebook':
-                    url = 'https://facebook.com/yourtopupcenterofficialnews';
-                    break;
-                case 'telegram':
-                    url = 'https://t.me/YTC24_bot';
-                    break;
-                case 'imo':
-                    url = 'https://imolink.com/yourtopupcenterimo';
-                    break;
-            }
-            window.open(url, '_blank');
-        }
-
-        function copyNumber() {
-            // Copy payment number to clipboard
-            const paymentNumber = document.getElementById("paymentNumber").textContent;
-            navigator.clipboard.writeText(paymentNumber).then(() => {
-                alert("Payment number copied to clipboard!");
-            });
-        }
-
-        // Populate the checkout item details
-        document.getElementById("itemName").textContent = "Item: TopUp Package";
-        document.getElementById("itemPrice").textContent = "Price: $50";
-        document.getElementById("itemUID").textContent = "UID: 123456789";
-        document.getElementById("productsName").textContent = "Products: Example Product Name";
-    </script>
 </body>
 </html>
