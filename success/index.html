@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .success-container {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .warning {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <h1>Order Confirmed!</h1>
+        <p>Your Order Token: <strong id="order-token"></strong></p>
+        <p>You will be redirected to the homepage in <span class="countdown">15</span> seconds.</p>
+        <p>Thank you for your purchase!</p>
+        <p class="warning" id="direct-access-warning" style="display:none;">Direct access is not allowed. You will be redirected shortly.</p>
+    </div>
+
+    <script>
+        const orderToken = sessionStorage.getItem('orderToken');
+        const countdownElement = document.querySelector('.countdown');
+
+        if (orderToken) {
+            document.getElementById('order-token').textContent = orderToken;
+            let countdown = 15;
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                if (countdown === 0) {
+                    clearInterval(countdownInterval);
+                    sessionStorage.removeItem('orderToken');
+                    window.location.href = 'index.html'; // Redirect to homepage
+                }
+            }, 1000);
+        } else {
+            document.getElementById('direct-access-warning').style.display = 'block';
+            let countdown = 5;
+            countdownElement.textContent = countdown;
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                if (countdown === 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'index.html'; // Redirect to homepage
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
