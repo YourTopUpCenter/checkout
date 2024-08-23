@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <style>
-     
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -102,15 +101,35 @@
             margin-top: 10px;
         }
         
-        .warning {
-            text-align: center;
-            margin-top: 50px;
-            color: red;
-            font-size: 24px;
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
         }
-
-        .countdown {
-            font-weight: bold;
+        
+        .loading-overlay.active {
+            display: flex;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #007BFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -124,7 +143,7 @@
         <button id="confirm-purchase-btn">Confirm Purchase</button>
 
         <div class="form-section" id="customer-form-section">
-             <h2>Customer Information</h2>
+            <h2>Customer Information</h2>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -138,11 +157,10 @@
             <input type="text" id="address" name="address">
 
             <button id="next-process-btn">Next Process</button>
-
         </div>
 
         <div class="payment-section" id="payment-section">
-                 <h2>Payment Options</h2>
+            <h2>Payment Options</h2>
             <p>Total Payment: <strong><span id="payment-amount"></span></strong> BDT</p>
 
             <div class="payment-method">
@@ -178,15 +196,15 @@
                 <p>8. Submit your payment.</p>
                 <button id="order-btn" style="display:none;">Order</button>
             </div>
-        
         </div>
     </div>
 
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
     <script>
-        // Add your existing JavaScript here
-
-
-      // Retrieve data from localStorage (you can use sessionStorage as well)
+        // Retrieve data from localStorage (you can use sessionStorage as well)
         const productName = localStorage.getItem('productName') || 'Free Fure';
         const itemName = localStorage.getItem('itemName') || 'Not Specified';
         const price = localStorage.getItem('price') || '0';
@@ -244,17 +262,20 @@
             }
         });
 
-       
-        // Copy payment number to clipboard
+        // Copy number to clipboard
         function copyNumber() {
-            const paymentNumber = document.getElementById('payment-number').textContent;
-            navigator.clipboard.writeText(paymentNumber).then(() => {
-                alert('Payment number copied to clipboard.');
+            const numberText = document.getElementById('payment-number').textContent;
+            navigator.clipboard.writeText(numberText).then(() => {
+                alert('Number copied to clipboard');
             });
         }
-    
 
+        // Order button click event listener with loading indicator
         document.getElementById('order-btn').addEventListener('click', function() {
+            const orderToken = generateOrderToken();
+            sessionStorage.setItem('orderToken', orderToken);
+            document.getElementById('loading-overlay').classList.add('active'); // Show loading spinner
+
             const orderData = {
                 productName: document.getElementById('checkout-product-name').textContent,
                 itemName: document.getElementById('checkout-item-name').textContent,
@@ -266,7 +287,7 @@
                 address: document.getElementById('address').value,
                 paymentMethod: document.querySelector('input[name="payment-method"]:checked').value,
                 trxId: document.getElementById('trx-id').value,
-                orderToken: sessionStorage.getItem('orderToken')
+                orderToken: orderToken
             };
 
             fetch('https://script.google.com/macros/s/AKfycbxLsr_eB6YyRwA48Jeo0_vuOOppEa16Q0t5jJ3lfGW_Nxh5LZlCn8EGfd_G9SbM20MxSA/exec', {
@@ -275,6 +296,7 @@
             })
             .then(response => response.json())
             .then(data => {
+                document.getElementById('loading-overlay').classList.remove('active'); // Hide loading spinner
                 if (data.status === 'success') {
                     window.location.href = `https://yourtopupcenter.github.io/checkout/success?token=${data.orderToken}`;
                 } else {
@@ -282,10 +304,16 @@
                 }
             })
             .catch(error => {
+                document.getElementById('loading-overlay').classList.remove('active'); // Hide loading spinner
                 alert('Server Error');
                 console.error('Error:', error);
             });
         });
+
+        // Function to generate a unique order token
+        function generateOrderToken() {
+            return 'ORDER-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        }
     </script>
 </body>
 </html>
