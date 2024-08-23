@@ -6,16 +6,10 @@
     <title>Checkout</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .checkout-container {
@@ -23,82 +17,46 @@
             max-width: 600px;
             margin: 30px auto;
             padding: 20px;
-            background: #1e1e1e;
-            border-radius: 12px;
-            box-shadow: 0px 0px 20px rgba(0, 255, 153, 0.7);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .checkout-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 255, 153, 0.3), transparent);
-            animation: rotateBackground 10s linear infinite;
-        }
-
-        @keyframes rotateBackground {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         }
 
         h1, h2 {
             text-align: center;
-            color: #00ff99;
-            text-shadow: 0 0 10px #00ff99;
-            margin-bottom: 20px;
+            color: #333;
         }
 
         p, label {
             font-size: 18px;
-            color: #b3b3b3;
+            color: #555;
             margin: 10px 0;
         }
 
         input[type="text"], input[type="email"], input[type="number"] {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             margin: 5px 0 20px;
             border-radius: 4px;
-            border: none;
-            background: #292929;
-            color: #e0e0e0;
+            border: 1px solid #ccc;
             font-size: 16px;
-            box-shadow: 0px 0px 8px rgba(0, 255, 153, 0.3);
-            outline: none;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-        input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus {
-            box-shadow: 0px 0px 12px rgba(0, 255, 153, 0.6);
         }
 
         button {
             display: block;
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(90deg, #00ff99, #007BFF);
+            padding: 10px;
+            background: #007BFF;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
             margin-top: 20px;
-            box-shadow: 0px 0px 15px rgba(0, 255, 153, 0.4);
-            transition: background 0.3s, box-shadow 0.3s;
         }
 
         button:hover {
-            background: linear-gradient(90deg, #007BFF, #00ff99);
-            box-shadow: 0px 0px 20px rgba(0, 255, 153, 0.8);
+            background: #0056b3;
         }
 
         .form-section, .payment-section {
@@ -113,12 +71,10 @@
         .payment-method label {
             font-size: 20px;
             cursor: pointer;
-            color: #e0e0e0;
         }
 
         .payment-method input[type="radio"] {
             margin-right: 10px;
-            accent-color: #00ff99;
         }
 
         .payment-steps {
@@ -127,25 +83,24 @@
 
         .payment-steps p {
             margin: 10px 0;
-            color: #b3b3b3;
         }
 
         .copy-number {
             display: inline-flex;
             align-items: center;
             cursor: pointer;
-            color: #00ff99;
+            color: #007BFF;
             margin-left: 10px;
         }
 
         .copy-number:hover {
-            color: #00cc7a;
+            color: #0056b3;
         }
 
         .trx-input {
             margin-top: 10px;
         }
-
+        
         .loading-overlay {
             display: none;
             position: fixed;
@@ -153,42 +108,28 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
-
+        
         .loading-overlay.active {
             display: flex;
         }
-
+        
         .loading-spinner {
             width: 50px;
             height: 50px;
-            border: 6px solid #292929;
-            border-top: 6px solid #00ff99;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #007BFF;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 768px) {
-            .checkout-container {
-                width: 95%;
-            }
-
-            h1, h2 {
-                font-size: 24px;
-            }
-
-            p, label {
-                font-size: 16px;
-            }
         }
     </style>
 </head>
@@ -264,69 +205,115 @@
 
     <script>
         // Retrieve data from localStorage (you can use sessionStorage as well)
-        const productName = localStorage.getItem('productName') || 'Free Fire';
-        const itemName = localStorage.getItem('itemName') || 'Diamonds';
-        const price = localStorage.getItem('price') || '1000';
-        const uid = localStorage.getItem('uid') || '123456789';
+        const productName = localStorage.getItem('productName') || 'Free Fure';
+        const itemName = localStorage.getItem('itemName') || 'Not Specified';
+        const price = localStorage.getItem('price') || '0';
+        const uid = localStorage.getItem('uid') || 'N/A';
 
-        document.getElementById('checkout-product-name').innerText = productName;
-        document.getElementById('checkout-item-name').innerText = itemName;
-        document.getElementById('checkout-price').innerText = price;
-        document.getElementById('checkout-uid').innerText = uid;
+        // Display data on the checkout page
+        document.getElementById('checkout-product-name').textContent = productName;
+        document.getElementById('checkout-item-name').textContent = itemName;
+        document.getElementById('checkout-price').textContent = price;
+        document.getElementById('checkout-uid').textContent = uid;
 
+        // Confirm Purchase button event listener
         document.getElementById('confirm-purchase-btn').addEventListener('click', function() {
             document.getElementById('customer-form-section').style.display = 'block';
-            document.getElementById('confirm-purchase-btn').style.display = 'none';
+            this.style.display = 'none';
         });
 
+        // Next Process button event listener
         document.getElementById('next-process-btn').addEventListener('click', function() {
             document.getElementById('payment-section').style.display = 'block';
+            document.getElementById('payment-amount').textContent = price;
+            document.getElementById('payment-amount-step').textContent = price;
             document.getElementById('customer-form-section').style.display = 'none';
         });
 
-        const paymentNumber = {
-            'bkash': '018XXXXXXXX',
-            'nagad': '017XXXXXXXX',
-            'rocket': '019XXXXXXXX'
-        };
-
-        document.getElementsByName('payment-method').forEach(radio => {
+        // Payment method selection event listener
+        document.querySelectorAll('input[name="payment-method"]').forEach((radio) => {
             radio.addEventListener('change', function() {
                 const selectedMethod = this.value;
-                document.getElementById('payment-number').innerText = paymentNumber[selectedMethod];
-                document.getElementById('payment-amount').innerText = price;
-                document.getElementById('payment-amount-step').innerText = price;
-                document.getElementById('order-btn').style.display = 'block';
+                let paymentNumber;
+
+                switch (selectedMethod) {
+                    case 'bkash':
+                        paymentNumber = '017XXXXXXXX';
+                        break;
+                    case 'nagad':
+                        paymentNumber = '018XXXXXXXX';
+                        break;
+                    case 'rocket':
+                        paymentNumber = '019XXXXXXXX';
+                        break;
+                }
+
+                document.getElementById('payment-number').textContent = paymentNumber;
+                document.getElementById('payment-steps').style.display = 'block';
             });
         });
 
+        // Show Order button after entering TrxID
+        document.getElementById('trx-id').addEventListener('input', function() {
+            if (this.value.trim() !== "") {
+                document.getElementById('order-btn').style.display = 'block';
+            } else {
+                document.getElementById('order-btn').style.display = 'none';
+            }
+        });
+
+        // Copy number to clipboard
         function copyNumber() {
-            const paymentNum = document.getElementById('payment-number').innerText;
-            navigator.clipboard.writeText(paymentNum);
-            alert('Number copied to clipboard!');
+            const numberText = document.getElementById('payment-number').textContent;
+            navigator.clipboard.writeText(numberText).then(() => {
+                alert('Number copied to clipboard');
+            });
         }
 
+        // Order button click event listener with loading indicator
         document.getElementById('order-btn').addEventListener('click', function() {
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const address = document.getElementById('address').value;
-            const trxID = document.getElementById('trx-id').value;
-            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+            const orderToken = generateOrderToken();
+            sessionStorage.setItem('orderToken', orderToken);
+            document.getElementById('loading-overlay').classList.add('active'); // Show loading spinner
 
-            // Save the order information to Google Sheets (you can use a suitable API)
+            const orderData = {
+                productName: document.getElementById('checkout-product-name').textContent,
+                itemName: document.getElementById('checkout-item-name').textContent,
+                price: document.getElementById('checkout-price').textContent,
+                uid: document.getElementById('checkout-uid').textContent,
+                customerName: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phoneNumber: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                paymentMethod: document.querySelector('input[name="payment-method"]:checked').value,
+                trxId: document.getElementById('trx-id').value,
+                orderToken: orderToken
+            };
 
-            // Show loading overlay
-            document.getElementById('loading-overlay').classList.add('active');
-
-            // Simulate order saving and redirect to success page
-            setTimeout(function() {
-                document.getElementById('loading-overlay').classList.remove('active');
-                // Redirect to success page with Order Token
-                const orderToken = 'ORD123456'; // Example token, generate dynamically
-                window.location.href = `https://yourtopupcenter.github.io/checkout/success?token=${orderToken}`;
-            }, 3000);
+            fetch('https://script.google.com/macros/s/AKfycbxLsr_eB6YyRwA48Jeo0_vuOOppEa16Q0t5jJ3lfGW_Nxh5LZlCn8EGfd_G9SbM20MxSA/exec', {
+                method: 'POST',
+                body: JSON.stringify(orderData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loading-overlay').classList.remove('active'); // Hide loading spinner
+                if (data.status === 'success') {
+                    window.location.href = `https://yourtopupcenter.github.io/checkout/success?token=${data.orderToken}`;
+                } else {
+                    alert('Server Error');
+                }
+            })
+            .catch(error => {
+                document.getElementById('loading-overlay').classList.remove('active'); // Hide loading spinner
+                alert('Server Error');
+                console.error('Error:', error);
+            });
         });
+
+        // Function to generate a unique order token
+        function generateOrderToken() {
+            return 'ORDER-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        }
     </script>
 </body>
 </html>
