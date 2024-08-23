@@ -3,332 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <title>Checkout Page</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #0a0a0a;
-            color: #f0f0f0;
-            text-align: center;
-            padding: 50px;
-            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
         .checkout-container {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: 0 0 20px rgba(0, 255, 170, 0.7);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .checkout-container:hover {
-            transform: scale(1.05);
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #0affaa;
+            color: #333;
             margin-bottom: 20px;
-            font-size: 2.5rem;
-            text-shadow: 0 0 10px #0affaa;
         }
 
-        .checkout-item {
+        .info {
             margin-bottom: 20px;
-            font-size: 1.2rem;
-            animation: fadeIn 1s ease-out;
         }
 
-        .checkout-item span {
+        .info div {
+            margin-bottom: 10px;
+        }
+
+        .info span {
             font-weight: bold;
-            color: #00ffcc;
         }
 
-        .confirm-button button {
-            padding: 12px 25px;
-            font-size: 18px;
-            color: #000;
-            background-color: #00ffcc;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .confirm-button button:hover {
-            background-color: #00cc99;
-            box-shadow: 0 0 15px #00ffcc;
-        }
-
-        .payment-section {
-            display: none;
-            margin-top: 30px;
-        }
-
-        .form-field {
-            margin-bottom: 15px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .form-field input {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #555;
-            border-radius: 10px;
-            background-color: #222;
-            color: #fff;
-            box-shadow: inset 0 0 10px #00ffcc;
-            transition: box-shadow 0.3s;
-        }
-
-        .form-field input:focus {
-            box-shadow: inset 0 0 15px #00ffcc;
-        }
-
-        .payment-methods {
-            margin-top: 20px;
-            animation: fadeIn 2s ease-out;
-        }
-
-        .payment-methods img {
-            width: 60px;
-            height: auto;
-            margin: 0 15px;
-            cursor: pointer;
-            transition: transform 0.3s, filter 0.3s;
-            filter: drop-shadow(0 0 10px #00ffcc);
-        }
-
-        .payment-methods img:hover {
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 20px #00ffcc);
-        }
-
-        .payment-protocol {
-            display: none;
-            margin-top: 20px;
-            text-align: left;
-            animation: fadeIn 2.5s ease-out;
-        }
-
-        .payment-protocol p {
-            margin: 10px 0;
-            font-size: 1rem;
-        }
-
-        .copy-icon {
-            cursor: pointer;
-            color: #0affaa;
-            text-decoration: underline;
-            margin-left: 10px;
-        }
-
-        .process-button {
-            margin-top: 20px;
-        }
-
-        .process-button button {
-            padding: 12px 25px;
-            font-size: 18px;
-            color: #000;
-            background-color: #00ffcc;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .process-button button:hover {
-            background-color: #00cc99;
-            box-shadow: 0 0 15px #00ffcc;
-        }
-
-        .platforms {
-            display: none;
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .platforms h3 {
-            font-size: 1.5rem;
-            color: #0affaa;
+        .price-display {
+            font-size: 20px;
+            color: #007bff;
+            margin-top: 10px;
             margin-bottom: 20px;
         }
 
-        .platforms img {
-            width: 60px;
-            height: auto;
-            margin: 0 15px;
-            cursor: pointer;
-            transition: transform 0.3s, filter 0.3s;
-            filter: drop-shadow(0 0 10px #00ffcc);
+        .contact-info {
+            margin-top: 20px;
         }
 
-        .platforms img:hover {
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 20px #00ffcc);
+        .contact-info div {
+            margin-bottom: 10px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 20px;
-            }
-
-            .checkout-container {
-                padding: 20px;
-            }
-
-            .form-field input {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .confirm-button button, .process-button button {
-                padding: 10px 20px;
-                font-size: 16px;
-            }
+        .contact-info span {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="checkout-container">
-        <h1>Checkout</h1>
-        <div class="checkout-item" id="itemName">Item: </div>
-        <div class="checkout-item" id="itemPrice">Price: </div>
-        <div class="checkout-item" id="itemUID">UID: </div>
-        <div class="checkout-item" id="productsName">Products: </div>
-        <div class="confirm-button">
-            <button onclick="confirmPurchase()">Confirm Purchase</button>
+        <h1>Checkout Page</h1>
+        <div class="info">
+            <div><span>Product Name:</span> <span id="productName">Loading...</span></div>
+            <div><span>Item Name:</span> <span id="itemName">Loading...</span></div>
+            <div><span>Price:</span> <span id="itemPrice">Loading...</span></div>
+            <div><span>UID:</span> <span id="uid">Loading...</span></div>
+        </div>
+        <div class="contact-info">
+            <div><span>Messenger:</span> yourtopupcenterofficial</div>
+            <div><span>WhatsApp:</span> +8801781146747</div>
+            <div><span>Telegram:</span> YTC24_bot</div>
+            <div><span>Facebook:</span> yourtopupcenterofficialnews</div>
         </div>
     </div>
 
-    <div class="payment-section" id="paymentSection">
-        <h1>Payment</h1>
-        <h2>Total Payment: <span id="totalPrice"></span></h2>
-        <form id="paymentForm">
-            <div class="form-field">
-                <input type="text" id="name" placeholder="Name" required>
-            </div>
-            <div class="form-field">
-                <input type="tel" id="number" placeholder="Number" required>
-            </div>
-            <div class="form-field">
-                <input type="text" id="address" placeholder="Address">
-            </div>
-            <div class="form-field">
-                <input type="email" id="email" placeholder="Email">
-            </div>
-            <div class="payment-methods">
-                <h3>Select Method</h3>
-                <img src="bkash-icon.png" alt="BKash" onclick="showProtocol('bkash')">
-                <img src="nagad-icon.png" alt="Nagad" onclick="showProtocol('nagad')">
-                <img src="rocket-icon.png" alt="Rocket" onclick="showProtocol('rocket')">
-            </div>
-        </form>
-        <div id="paymentProtocol" class="payment-protocol">
-            <h4 id="protocolTitle">Payment Protocol</h4>
-            <p>1. Open your <span id="selectedMethod">selected method</span> app.</p>
-            <p>2. Go to the Send Money option.</p>
-            <p>3. Enter the amount shown above.</p>
-            <p>4. Use the following number: <span id="paymentNumber">017xxxxxxxx</span> <span class="copy-icon" onclick="copyNumber()">Copy</span></p>
-            <p>5. Complete the transaction.</p>
-            <p>6. Note down the Transaction ID.</p>
-            <p>7. Enter the Transaction ID in the box below:</p>
-            <div class="form-field">
-                <input type="text" id="trxId" placeholder="Trx ID">
-            </div>
-            <div class="process-button">
-                <button onclick="processOrder()">Process to Order</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="platforms" id="platforms">
-        <h3>Select Platform</h3>
-        <img src="messenger-icon.png" alt="Messenger" onclick="sendMessage('messenger')">
-        <img src="whatsapp-icon.png" alt="WhatsApp" onclick="sendMessage('whatsapp')">
-        <img src="facebook-icon.png" alt="Facebook" onclick="sendMessage('facebook')">
-        <img src="telegram-icon.png" alt="Telegram" onclick="sendMessage('telegram')">
-        <img src="imo-icon.png" alt="IMO" onclick="sendMessage('imo')">
-    </div>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const checkoutItem = JSON.parse(localStorage.getItem('checkoutItem'));
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkoutItem = JSON.parse(localStorage.getItem('checkoutItem'));
 
-        if (checkoutItem) {
-            document.getElementById('itemName').textContent = `Item: ${checkoutItem.itemName}`;
-            document.getElementById('itemPrice').textContent = `Price: ${checkoutItem.price} BDT`;
-            document.getElementById('itemUID').textContent = `UID: ${checkoutItem.uid}`;
-            document.getElementById('productsName').textContent = `Product: ${checkoutItem.productName}`;
-        }
-    });
-
-    function confirmPurchase() {
-        document.getElementById("paymentSection").style.display = "block";
-        document.getElementById("totalPrice").textContent = document.getElementById("itemPrice").textContent.split(": ")[1];
-        window.scrollTo({ top: document.getElementById("paymentSection").offsetTop, behavior: 'smooth' });
-    }
-
-    function showProtocol(method) {
-        const paymentProtocol = document.getElementById("paymentProtocol");
-        const selectedMethod = document.getElementById("selectedMethod");
-        const paymentNumber = document.getElementById("paymentNumber");
-
-        selectedMethod.textContent = method.charAt(0).toUpperCase() + method.slice(1);
-        if (method === 'bkash') {
-            paymentNumber.textContent = '017xxxxxxxx';
-        } else if (method === 'nagad') {
-            paymentNumber.textContent = '018xxxxxxxx';
-        } else if (method === 'rocket') {
-            paymentNumber.textContent = '019xxxxxxxx';
-        }
-
-        paymentProtocol.style.display = "block";
-        window.scrollTo({ top: paymentProtocol.offsetTop, behavior: 'smooth' });
-    }
-
-    function processOrder() {
-        document.getElementById("paymentForm").style.display = "none";
-        document.getElementById("platforms").style.display = "block";
-        window.scrollTo({ top: document.getElementById("platforms").offsetTop, behavior: 'smooth' });
-    }
-
-    function sendMessage(platform) {
-        let url = '';
-        switch (platform) {
-            case 'messenger':
-                url = 'https://m.me/yourtopupcenterofficial';
-                break;
-            case 'whatsapp':
-                url = 'https://wa.me/+8801781146747';
-                break;
-            case 'facebook':
-                url = 'https://facebook.com/yourtopupcenterofficialnews';
-                break;
-            case 'telegram':
-                url = 'https://t.me/YTC24_bot';
-                break;
-            default:
-                return;
-        }
-        window.open(url, '_blank');
-    }
-</script>
-
+            if (checkoutItem) {
+                document.getElementById('productName').innerText = checkoutItem.productName || 'Not Defined';
+                document.getElementById('itemName').innerText = checkoutItem.itemName || 'Not Defined';
+                document.getElementById('itemPrice').innerText = `${checkoutItem.price || 'Not Defined'} BDT`;
+                document.getElementById('uid').innerText = checkoutItem.uid || 'Not Defined';
+            } else {
+                document.getElementById('productName').innerText = 'No item selected';
+                document.getElementById('itemName').innerText = 'No item selected';
+                document.getElementById('itemPrice').innerText = 'No item selected';
+                document.getElementById('uid').innerText = 'No UID provided';
+            }
+        });
+    </script>
 </body>
 </html>
