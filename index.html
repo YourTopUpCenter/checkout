@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <style>
+     
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -122,9 +123,8 @@
         <p><strong>UID:</strong> <span id="checkout-uid"></span></p>
         <button id="confirm-purchase-btn">Confirm Purchase</button>
 
-        <!-- Customer Form Section -->
         <div class="form-section" id="customer-form-section">
-            <h2>Customer Information</h2>
+             <h2>Customer Information</h2>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -138,11 +138,11 @@
             <input type="text" id="address" name="address">
 
             <button id="next-process-btn">Next Process</button>
+
         </div>
 
-        <!-- Payment Section -->
         <div class="payment-section" id="payment-section">
-            <h2>Payment Options</h2>
+                 <h2>Payment Options</h2>
             <p>Total Payment: <strong><span id="payment-amount"></span></strong> BDT</p>
 
             <div class="payment-method">
@@ -178,11 +178,15 @@
                 <p>8. Submit your payment.</p>
                 <button id="order-btn" style="display:none;">Order</button>
             </div>
+        
         </div>
     </div>
 
     <script>
-        // Retrieve data from localStorage (you can use sessionStorage as well)
+        // Add your existing JavaScript here
+
+
+      // Retrieve data from localStorage (you can use sessionStorage as well)
         const productName = localStorage.getItem('productName') || 'Free Fure';
         const itemName = localStorage.getItem('itemName') || 'Not Specified';
         const price = localStorage.getItem('price') || '0';
@@ -240,13 +244,7 @@
             }
         });
 
-        // Order button event listener
-        document.getElementById('order-btn').addEventListener('click', function() {
-            const orderToken = Math.floor(10000 + Math.random() * 90000);
-            sessionStorage.setItem('orderToken', orderToken);
-            window.location.href = 'https://yourtopupcenter.github.io/checkout/success';
-        });
-
+       
         // Copy payment number to clipboard
         function copyNumber() {
             const paymentNumber = document.getElementById('payment-number').textContent;
@@ -254,6 +252,40 @@
                 alert('Payment number copied to clipboard.');
             });
         }
+    
+
+        document.getElementById('order-btn').addEventListener('click', function() {
+            const orderData = {
+                productName: document.getElementById('checkout-product-name').textContent,
+                itemName: document.getElementById('checkout-item-name').textContent,
+                price: document.getElementById('checkout-price').textContent,
+                uid: document.getElementById('checkout-uid').textContent,
+                customerName: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phoneNumber: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                paymentMethod: document.querySelector('input[name="payment-method"]:checked').value,
+                trxId: document.getElementById('trx-id').value,
+                orderToken: sessionStorage.getItem('orderToken')
+            };
+
+            fetch('https://script.google.com/macros/s/AKfycbxLsr_eB6YyRwA48Jeo0_vuOOppEa16Q0t5jJ3lfGW_Nxh5LZlCn8EGfd_G9SbM20MxSA/exec', {
+                method: 'POST',
+                body: JSON.stringify(orderData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = `https://yourtopupcenter.github.io/checkout/success?token=${data.orderToken}`;
+                } else {
+                    alert('Server Error');
+                }
+            })
+            .catch(error => {
+                alert('Server Error');
+                console.error('Error:', error);
+            });
+        });
     </script>
 </body>
 </html>
