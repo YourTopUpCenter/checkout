@@ -202,6 +202,9 @@
     <div class="loading-overlay" id="loading-overlay">
         <div class="loading-spinner"></div>
     </div>
+    
+    
+    
 
     <script>
         // Retrieve data from localStorage (you can use sessionStorage as well)
@@ -209,6 +212,14 @@
         const itemName = localStorage.getItem('itemName') || 'Not Specified';
         const price = localStorage.getItem('price') || '0';
         const uid = localStorage.getItem('uid') || 'N/A';
+        
+        
+        
+        if (!productName || !itemName || !price || !uid) {
+            alert("Missing required information. Redirecting to home page.");
+            window.location.href = 'https://yourtopupcenter.github.io/home'; // Replace with your home page URL
+        }
+        
 
         // Display data on the checkout page
         document.getElementById('checkout-product-name').textContent = productName;
