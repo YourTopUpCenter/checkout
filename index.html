@@ -202,9 +202,6 @@
     <div class="loading-overlay" id="loading-overlay">
         <div class="loading-spinner"></div>
     </div>
-    
-    
-    
 
     <script>
         // Retrieve data from localStorage (you can use sessionStorage as well)
@@ -212,14 +209,12 @@
         const itemName = localStorage.getItem('itemName') || 'Not Specified';
         const price = localStorage.getItem('price') || '0';
         const uid = localStorage.getItem('uid') || 'N/A';
-        
-        
-        
-        if (!productName || !itemName || !price || !uid) {
-            alert("Missing required information. Redirecting to home page.");
+
+        // Redirect to home page if default values are detected
+        if (productName === 'Free Fure' && itemName === 'Not Specified' && price === '0' && uid === 'N/A') {
+            alert('Invalid information! Redirecting to home page.');
             window.location.href = 'https://yourtopupcenter.github.io/home'; // Replace with your home page URL
         }
-        
 
         // Display data on the checkout page
         document.getElementById('checkout-product-name').textContent = productName;
@@ -229,6 +224,15 @@
 
         // Confirm Purchase button event listener
         document.getElementById('confirm-purchase-btn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            // Check if name and phone are filled
+            if (name.trim() === '' || phone.trim() === '') {
+                alert('Please fill in the required fields.');
+                return;
+            }
+
             document.getElementById('customer-form-section').style.display = 'block';
             this.style.display = 'none';
         });
@@ -261,19 +265,11 @@
 
                 document.getElementById('payment-number').textContent = paymentNumber;
                 document.getElementById('payment-steps').style.display = 'block';
+                document.getElementById('order-btn').style.display = 'block';
             });
         });
 
-        // Show Order button after entering TrxID
-        document.getElementById('trx-id').addEventListener('input', function() {
-            if (this.value.trim() !== "") {
-                document.getElementById('order-btn').style.display = 'block';
-            } else {
-                document.getElementById('order-btn').style.display = 'none';
-            }
-        });
-
-        // Copy number to clipboard
+        // Copy number function
         function copyNumber() {
             const numberText = document.getElementById('payment-number').textContent;
             navigator.clipboard.writeText(numberText).then(() => {
@@ -281,50 +277,49 @@
             });
         }
 
-        // Order button click event listener with loading indicator
+        // Order button event listener
         document.getElementById('order-btn').addEventListener('click', function() {
-            const orderToken = generateOrderToken();
-            sessionStorage.setItem('orderToken', orderToken);
-            document.getElementById('loading-overlay').classList.add('active'); // Show loading spinner
+            const trxId = document.getElementById('trx-id').value;
 
-            const orderData = {
-                productName: document.getElementById('checkout-product-name').textContent,
-                itemName: document.getElementById('checkout-item-name').textContent,
-                price: document.getElementById('checkout-price').textContent,
-                uid: document.getElementById('checkout-uid').textContent,
-                customerName: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phoneNumber: document.getElementById('phone').value,
-                address: document.getElementById('address').value,
-                paymentMethod: document.querySelector('input[name="payment-method"]:checked').value,
-                trxId: document.getElementById('trx-id').value,
-                orderToken: orderToken
-            };
+            if (trxId.trim() === '') {
+                alert('Please enter the TrxID.');
+                return;
+            }
 
-            fetch('https://script.google.com/macros/s/AKfycbxLsr_eB6YyRwA48Jeo0_vuOOppEa16Q0t5jJ3lfGW_Nxh5LZlCn8EGfd_G9SbM20MxSA/exec', {
-                method: 'POST',
-                body: JSON.stringify(orderData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('loading-overlay').classList.remove('active'); // Hide loading spinner
-                if (data.status === 'success') {
-                    window.location.href = `https://yourtopupcenter.github.io/checkout/success?token=${data.orderToken}`;
+            // Show loading overlay
+            document.getElementById('loading-overlay').classList.add('active');
+
+            // Simulate saving order information to Google Sheets
+            setTimeout(() => {
+                const orderToken = 'ORD' + new Date().getTime(); // Generate a unique order token
+                const orderData = {
+                    productName,
+                    itemName,
+                    price,
+                    uid,
+                    customerName: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    paymentMethod: document.querySelector('input[name="payment-method"]:checked').value,
+                    trxId,
+                    orderToken,
+                };
+
+                // Simulate successful save to Google Sheets
+                const success = true; // Set this to false to simulate a failure
+
+                if (success) {
+                    alert('Order placed successfully! Your order token is : ' + orderToken);
+                    window.location.href = 'https://yourtopupcenter.github.io/checkout/success'; // Redirect to the success page
                 } else {
-                    alert('Server Error');
+                    alert('Server Error. Please try again later.');
                 }
-            })
-            .catch(error => {
-                document.getElementById('loading-overlay').classList.remove('active'); // Hide loading spinner
-                alert('Server Error');
-                console.error('Error:', error);
-            });
-        });
 
-        // Function to generate a unique order token
-        function generateOrderToken() {
-            return 'ORDER-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-        }
+                // Hide loading overlay
+                document.getElementById('loading-overlay').classList.remove('active');
+            }, 2000);
+        });
     </script>
 </body>
 </html>
