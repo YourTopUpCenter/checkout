@@ -1,4 +1,12 @@
 
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Cabin:ital,wght@0,400..700;1,400..700&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
         * {
             margin: 0;
             padding: 0;
@@ -762,7 +770,7 @@ nav img {
         
         .checkout-container {
             width: 90%;
-            max-width: 600px;
+            max-width: 900px;
             margin: 30px auto;
             padding: 20px;
             background: #000000c1;
@@ -890,7 +898,7 @@ nav img {
        }
        .dbox{
             width: 90%;
-            max-width: 600px;
+            max-width: 900px;
             margin: 30px auto;
             padding: 20px;
             background: #000000c1;
@@ -905,90 +913,99 @@ nav img {
        
       
       
+        
+       .faq {
+            font-family: "Anek Bangla", sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            
+        }
 
         .faq-container {
-            width: 90%;
-            max-width: 800px;
-            background: #000;
-            border-radius: 15px;
-            
-            padding: 30px;
-            transition: all 0.3s ease;
+            background: #fff;
+            border-radius: 0 15px 0 15px;
+            box-shadow: 0 8px 16px #50ff00;
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+            border: 3px solid #3bff00;
         }
 
-       .faq-container h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #3bff00;
-            font-size: 2.5em;
-            letter-spacing: 2px;
-        }
-
-        .faq {
-            margin-bottom: 20px;
-            background: #2a2a2a;
-            border-radius: 10px;
+        .faq-header {
+            background-color: #3bff00;
+            color: 000;
             padding: 20px;
-            border-left: 5px solid #3bff00;
-            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+           
         }
 
-        .faq:last-child {
-            margin-bottom: 0;
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            
         }
 
         .faq-question {
-            font-size: 1.2em;
+            background-color: #f5f5f5;
+            padding: 15px 20px;
             cursor: pointer;
             position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            color: #3bff00;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            font-family: "Anek Bangla", sans-serif;
         }
 
-        .faq-question::after {
-            content: '\002B';
-            font-size: 24px;
+        .faq-question:hover {
+            background-color: #e0e0e0;
+        }
+
+        .faq-question:after {
+            content: '+';
+            font-size: 20px;
+            position: absolute;
+            right: 20px;
             transition: transform 0.3s ease;
-            color: #3bff00;
         }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            padding: 0;
-            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 20px;
+            font-size: 16px;
             line-height: 1.8;
-            font-size: 1em;
-            color: #fff;
-            margin-top: 10px;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: #f5f5f5;
+            font-family: "Anek Bangla", sans-serif;
         }
 
-        .faq-question.active::after {
+        .faq-answer.open {
+            padding: 15px 20px;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px; /* Adjust this according to the content */
+        }
+
+        .faq-item.open .faq-question:after {
             transform: rotate(45deg);
         }
 
-        .faq-question.active + .faq-answer {
-            max-height: 500px;
-            padding: 15px 0;
-        }
-
-        @media (max-width: 600px) {
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .faq-container {
-                padding: 20px;
+                width: 90%;
             }
 
-          .faq-container  h1 {
-                font-size: 2em;
+            .faq-question, .faq-answer {
+                font-size: 16px;
             }
 
-            .faq-question {
-                font-size: 1em;
+            .faq-header {
+                font-size: 20px;
             }
-
-            .faq-answer {
-                font-size: 0.9em;
-            }
-      }
+               }
