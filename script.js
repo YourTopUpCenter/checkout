@@ -252,21 +252,6 @@ function goBack() {
 
 
 
-const faqs = document.querySelectorAll('.faq-question');
-
-        faqs.forEach(faq => {
-            faq.addEventListener('click', () => {
-                faq.classList.toggle('active');
-
-                const answer = faq.nextElementSibling;
-                if (faq.classList.contains('active')) {
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                } else {
-                    answer.style.maxHeight = 0;
-                }
-            });
-        });
-
     
     
     document.addEventListener("DOMContentLoaded", function () {
@@ -292,6 +277,36 @@ const faqs = document.querySelectorAll('.faq-question');
 
     
     
+    document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+
+                faqItem.classList.toggle('open');
+                answer.classList.toggle('open');
+            });
+        });
     
     
-    
+
+
+// আগের পেজের URL পেতে document.referrer ব্যবহার করা হয়
+  var referrer = document.referrer;
+
+  // অনুমোদিত URL গুলোর তালিকা
+  var allowedReferrers = [
+    "https://google.com/aliho/gjsh",
+    "https://facebook.com/gskg/hkshd/gjd",
+    "https://x.com/gkdgd/gkdhd/gskhd",
+      "https://yourtopupcenter.github.io/products/cat_games-topup/free-fire-bd/"
+  ];
+
+  // যদি আগের পেজের URL অনুমোদিত তালিকায় না থাকে তাহলে রিডাইরেক্ট করবে
+  var isAllowed = allowedReferrers.some(function(url) {
+    return referrer.startsWith(url);
+  });
+
+  if (!isAllowed) {
+    alert("You are being redirected because you did not come from an authorized page.");
+    window.location.href = "https://yourtopupcenter.github.io";
+            }
