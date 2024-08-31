@@ -1,0 +1,170 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Cabin", sans-serif;
+        }
+        body{
+    margin: 0 auto;
+    
+    background-color: #141414;
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.05) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: animateBackground 10s linear infinite;
+}
+
+@keyframes animateBackground {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 50px 50px, 50px 50px;
+    }
+}
+
+        
+        
+       .ck {
+            margin: 0;
+            padding: 0;
+            
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            font-family: 'Arial', sans-serif;
+        }
+
+        .checkmark-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3bff00;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+            animation: popIn 0.5s ease-out, glow 1.5s infinite alternate;
+            padding: 10px;
+            margin: 50px;
+        }
+
+        .checkmark {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #000 #000;
+            transform: rotate(-45deg);
+            opacity: 0;
+            animation: drawCheck 0.8s 0.3s forwards ease-in-out;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px #38f100;
+            }
+            100% {
+                box-shadow: 0 0 30px #3bff00;
+            }
+        }
+
+        @keyframes drawCheck {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            50% {
+                width: 50px;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 50px;
+                height: 25px;
+                opacity: 1;
+            }
+        }
+        
+       h1{
+           color: #fff;
+           animation: text 0.5s ease-out;
+           text-align: center;
+           text-shadow: 0 0 30px #fff;
+           font-size: 30px;
+       }
+       
+       
+       
+        @keyframes text {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    
+        
+        
+       .smain {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+            
+            
+        }
+
+        .success-container {
+            text-align: center;
+            padding: 40px;
+            background-color: transparent;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px #3bff00;
+            border: 2px solid #3bff00;
+        }
+
+        h1 {
+            color: #3bff00;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .warning {
+            color: red;
+            margin-top: 20px;
+        }
+        
+        p strong{
+            color: #3bff00
+            font-size: 19px;
+            
+        }
+        
+       .war{
+           margin: 40px 5% 0 5%;
+           text-align: center;
+           color: #fff;
+           font-size: 20px;
+          }
