@@ -3,81 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Success</title>
+    <title>Order Successfully Submited  | Your TopUp Center </title>
+    
+    <meta name="description" content="আপনার বিশ্বস্ত অনলাইন ডিজিটাল গেম স্টোর Your TopUp Center  - এ আপনার প্রিয় গেম ক্রেডিট টপ-আপ করুন । ">
+    <meta name="keywords" content="blogs, tech, news, update,Your TopUp Center, #ytc24, topup, free fire, gaming,  seller,">
+    <meta name="author" content="Ali Hosen">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Your TopUp Center">
+    <meta property="og:title" content=" Your TopUp Center">
+    <meta property="og:image" content="https://i.postimg.cc/Qx3wdSvM/Adobe-Express-20231213-2151070-1.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="https://i.postimg.cc/mD3qYHH4/Picsart-24-01-20-22-35-57-863.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Cabin:ital,wght@0,400..700;1,400..700&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-
-        .success-container {
-            text-align: center;
-            padding: 40px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #28a745;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        .warning {
-            color: red;
-            margin-top: 20px;
-        }
+        
+        
+        
     </style>
 </head>
 <body>
+    
+        
+    <section class="ck">
+    <div class="checkmark-container">
+        <div class="checkmark"></div>
+        
+      
+    </div>
+    </section>
+      <h1>Your Order Successfully Submited ! </h1>
+
+    
+    <div class="smain">
     <div class="success-container">
-        <h1>Order Confirmed!</h1>
-        <p>Your Order Token: <strong id="order-token"></strong></p>
+      
+        <p>Your Order Token : <strong id="order-token"></strong></p>
         <p>You will be redirected to the homepage in <span class="countdown">15</span> seconds.</p>
         <p>Thank you for your purchase!</p>
         <p class="warning" id="direct-access-warning" style="display:none;">Direct access is not allowed. You will be redirected shortly.</p>
     </div>
+    
+    </div>
+    
+    <section class="btc">
+        <div class="war">Order Token টি কপি করে অতবা Scren Shot দিয়ে রাখুন, পরে কাজে লাগতে পারে !  </div>
+    </section>
 
-    <script>
-        const orderToken = sessionStorage.getItem('orderToken');
-        const countdownElement = document.querySelector('.countdown');
-
-        if (orderToken) {
-            document.getElementById('order-token').textContent = orderToken;
-            let countdown = 15;
-            const countdownInterval = setInterval(() => {
-                countdown--;
-                countdownElement.textContent = countdown;
-                if (countdown === 0) {
-                    clearInterval(countdownInterval);
-                    sessionStorage.removeItem('orderToken');
-                    window.location.href = 'index.html'; // Redirect to homepage
-                }
-            }, 1000);
-        } else {
-            document.getElementById('direct-access-warning').style.display = 'block';
-            let countdown = 5;
-            countdownElement.textContent = countdown;
-            const countdownInterval = setInterval(() => {
-                countdown--;
-                countdownElement.textContent = countdown;
-                if (countdown === 0) {
-                    clearInterval(countdownInterval);
-                    window.location.href = 'https://yourtopupcenter.github.io/home'; // Redirect to homepage
-                }
-            }, 1000);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
-</html>
+        </html>
