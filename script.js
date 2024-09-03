@@ -289,24 +289,22 @@ function goBack() {
     
     
 
+var referrer = document.referrer;
 
-// আগের পেজের URL পেতে document.referrer ব্যবহার করা হয়
-  var referrer = document.referrer;
-
-  // অনুমোদিত URL গুলোর তালিকা
-  var allowedReferrers = [
+// অনুমোদিত URL গুলোর তালিকা
+var allowedReferrers = [
     "https://google.com/aliho/gjsh",
     "https://facebook.com/gskg/hkshd/gjd",
     "https://yourtopupcenter.github.io/products/cat_games-topup/pubg/",
-      "https://yourtopupcenter.github.io/products/cat_games-topup/free-fire-bd/"
-  ];
+    "https://yourtopupcenter.github.io/products/cat_games-topup/free-fire-bd/"
+];
 
-  // যদি আগের পেজের URL অনুমোদিত তালিকায় না থাকে তাহলে রিডাইরেক্ট করবে
-  var isAllowed = allowedReferrers.some(function(url) {
-    return referrer.startsWith(url);
-  });
+// যদি আগের পেজের URL অনুমোদিত তালিকায় না থাকে তাহলে রিডাইরেক্ট করবে
+var isAllowed = allowedReferrers.some(function(url) {
+    return referrer.includes(url);
+});
 
-  if (!isAllowed) {
+if (!isAllowed || !referrer) {
     alert("You are being redirected because you did not come from an authorized page.");
     window.location.href = "https://yourtopupcenter.github.io";
-            }
+}
