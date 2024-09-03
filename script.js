@@ -297,7 +297,7 @@ function goBack() {
   var allowedReferrers = [
     "https://google.com/aliho/gjsh",
     "https://facebook.com/gskg/hkshd/gjd",
-    "https://x.com/gkdgd/gkdhd/gskhd",
+    "https://yourtopupcenter.github.io/products/cat_games-topup/pubg/",
       "https://yourtopupcenter.github.io/products/cat_games-topup/free-fire-bd/"
   ];
 
