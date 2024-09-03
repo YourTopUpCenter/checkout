@@ -296,7 +296,8 @@ var allowedReferrers = [
     "https://google.com/aliho/gjsh",
     "https://facebook.com/gskg/hkshd/gjd",
     "https://yourtopupcenter.github.io/products/cat_games-topup/pubg/",
-    "https://yourtopupcenter.github.io/products/cat_games-topup/free-fire-bd/"
+    "https://yourtopupcenter.github.io/products/cat_games-topup/free-fire-bd/",
+        "https://yourtopupcenter.github.io/products/cat_games-topup/teen-patti-gold/"
 ];
 
 // যদি আগের পেজের URL অনুমোদিত তালিকায় না থাকে তাহলে রিডাইরেক্ট করবে
