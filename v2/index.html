@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পেমেন্ট ও তথ্য প্রদান - Your TopUp Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mina:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+     
+        :root {
+            --primary-color: #006eff;
+            --secondary-color: #5a6a7e;
+            --success-color: #20c997;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --white-color: #ffffff;
+            --body-font: 'Mina', sans-serif;
+            --heading-font: 'Mina', sans-serif;
+            --transition-speed: 0.3s ease;
+            --border-radius: 8px;
+            --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.06);
+            --box-shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: var(--body-font); line-height: 1.8; color: var(--dark-color); background-color: #fdfdfd; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: var(--heading-font); font-weight: 700; margin-bottom: 1rem; color: #2c3e50; line-height: 1.4; }
+        a { text-decoration: none; color: var(--primary-color); transition: color var(--transition-speed); }
+        a:hover { color: #004bbd; }
+        ul { list-style: none; padding-left: 0; }
+        img { max-width: 100%; height: auto; display: block; border-radius: var(--border-radius); }
+        .container { max-width: 850px; margin: 0 auto; padding: 0 15px; }
+        section { padding: 60px 0; position: relative; overflow: hidden; }
+        #checkout-v2-section { padding-top: 30px; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.4rem; font-weight: 700; color: #333; position: relative; padding-bottom: 20px; }
+        .section-title i { color: var(--primary-color); margin-right: 10px; font-size: 2rem; vertical-align: middle; }
+        .section-title::after { content: ''; position: absolute; display: block; width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary-color), var(--info-color)); bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+        .btn { display: inline-block; padding: 12px 30px; background-image: linear-gradient(45deg, var(--primary-color) 0%, #007bff 100%); color: var(--white-color); border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all var(--transition-speed); box-shadow: 0 5px 15px rgba(0, 110, 255, 0.3); text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn:hover { background-image: linear-gradient(45deg, #0056b3 0%, var(--primary-color) 100%); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 110, 255, 0.4); }
+        .btn i { margin-left: 8px; }
+        .btn:disabled { background-image: linear-gradient(45deg, var(--secondary-color) 0%, #868e96 100%); cursor: not-allowed; box-shadow: none; transform: none; }
+
+        /* --- Header Styles --- */
+        #main-header { background-color: rgba(255, 255, 255, 0.97); backdrop-filter: blur(8px); box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); padding: 12px 0; position: sticky; top: 0; z-index: 1000; transition: background-color var(--transition-speed), padding var(--transition-speed); }
+        body.scrolled #main-header { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
+        #main-header .container { max-width: 1100px; display: flex; justify-content: space-between; align-items: center; }
+        .logo a { font-size: 1.9rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; transition: transform var(--transition-speed); }
+        .logo a:hover { transform: scale(1.03); }
+        .logo a i { margin-right: 10px; color: var(--success-color); font-size: 1.5rem; animation: rotateIcon 5s linear infinite; }
+        #main-nav ul { display: flex; flex-wrap: wrap; }
+        #main-nav ul li { margin-left: 25px; }
+        #main-nav ul li a { color: var(--dark-color); font-weight: 600; padding: 8px 0; position: relative; transition: color var(--transition-speed); letter-spacing: 0.3px; }
+        #main-nav ul li a.active { color: var(--primary-color); font-weight: 700; }
+        #main-nav ul li a.active::after, #main-nav ul li a:hover::after { content: ''; position: absolute; width: 100%; height: 3px; display: block; margin-top: 6px; left: 0; background: var(--primary-color); transition: width 0.4s ease-out, left 0.4s ease-out; border-radius: 2px; }
+        #main-nav ul li a::after { content: ''; position: absolute; width: 0; height: 3px; display: block; margin-top: 6px; right: 0; background: var(--primary-color); transition: width 0.4s ease-out, left 0.4s ease-out; border-radius: 2px; }
+        #main-nav ul li a:hover { color: var(--primary-color); }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--dark-color); transition: color var(--transition-speed); }
+        .menu-toggle:hover { color: var(--primary-color); }
+
+        /* --- Checkout V2 Page Specific Styles --- */
+        .checkout-v2-wrapper { background-color: var(--white-color); padding: 30px 40px; border-radius: var(--border-radius); box-shadow: var(--box-shadow-medium); border: 1px solid #eee; }
+        .checkout-v2-wrapper h3 { font-size: 1.5rem; margin-bottom: 25px; color: #333; text-align: center; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .checkout-v2-wrapper h3 i { color: var(--primary-color); margin-right: 8px; }
+        .order-summary-v2 ul { margin-bottom: 25px; }
+        .order-summary-v2 li { padding: 10px 0; border-bottom: 1px dashed #eee; display: flex; justify-content: space-between; align-items: center; }
+        .order-summary-v2 li:last-child { border-bottom: none; font-weight: bold; color: var(--success-color); font-size: 1.15rem; padding-top: 15px; }
+        .order-summary-v2 li .label { color: var(--secondary-color); margin-right: 10px; }
+        .order-summary-v2 li .value { font-weight: 500; color: var(--dark-color); text-align: right; }
+        .order-summary-v2 li .value.uid { font-weight: 600; color: var(--primary-color); word-break: break-all; }
+        .form-section { margin-bottom: 30px; }
+        .form-section h4 { font-size: 1.2rem; color: var(--primary-color); margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--secondary-color); font-size: 0.95rem; }
+        .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="email"], .form-group textarea { width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: var(--border-radius); font-family: var(--body-font); font-size: 1rem; transition: border-color var(--transition-speed), box-shadow var(--transition-speed); background-color: #f8f9fa; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 0 0.2rem rgba(0, 110, 255, 0.25); outline: none; background-color: var(--white-color); }
+        .form-group textarea { min-height: 80px; resize: vertical;}
+        .form-group small { font-size: 0.85em; color: var(--secondary-color); }
+        #proceed-btn { width: 100%; margin-top: 10px; }
+        #payment-section { display: none; margin-top: 30px; border-top: 1px solid #eee; padding-top: 30px; }
+        .terms-agreement { margin-bottom: 25px; display: flex; align-items: center; }
+        .terms-agreement input[type="checkbox"] { margin-right: 10px; width: 18px; height: 18px; cursor: pointer;}
+        .terms-agreement label { margin-bottom: 0; font-weight: normal; color: var(--dark-color); font-size: 0.95rem;}
+        .terms-agreement label a { font-weight: 600; text-decoration: underline;}
+        .payment-methods { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px; justify-content: center; }
+        .payment-methods input[type="radio"] { display: none; }
+        .payment-methods label { border: 2px solid #eee; padding: 10px 15px; border-radius: var(--border-radius); cursor: pointer; transition: all var(--transition-speed); font-weight: 500; min-width: 100px; text-align: center; display: inline-block; }
+        .payment-methods label:hover { border-color: var(--primary-color); }
+        .payment-methods input[type="radio"]:checked + label { border-color: var(--primary-color); background-color: #e9f5ff; font-weight: 600; box-shadow: 0 0 8px rgba(0, 110, 255, 0.1); }
+        #payment-details-area { margin-top: 20px; display: none; }
+        .payment-instruction { background-color: var(--light-color); padding: 20px; border-radius: var(--border-radius); border: 1px solid #eee; }
+        .payment-instruction h5 { font-size: 1.1rem; color: var(--dark-color); margin-bottom: 10px; }
+        .payment-instruction ol { padding-left: 20px; margin-bottom: 15px; }
+        .payment-instruction ol li { list-style: decimal; margin-bottom: 8px; font-size: 0.95rem; color: var(--secondary-color); }
+        .payment-number-area { margin-bottom: 15px; font-size: 1.1rem; }
+        .payment-number-area strong { font-weight: 700; color: var(--danger-color); font-size: 1.2rem; margin-right: 10px; }
+        .copy-btn { padding: 5px 10px; font-size: 0.85rem; background-color: var(--secondary-color); color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px; transition: background-color var(--transition-speed); }
+        .copy-btn:hover { background-color: var(--dark-color); }
+        .copy-btn i { margin-right: 5px; }
+        #trx-id-input { margin-top: 20px; } /* Wrapper div for TrxID input */
+        #trxId { width: 100%; } /* Ensure input takes width within group */
+        #place-order-btn { width: 100%; margin-top: 25px; }
+        #loading-indicator { display: none; text-align: center; padding: 30px 0; font-size: 1.2rem; color: var(--primary-color); }
+        #loading-indicator i { margin-right: 10px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error-message { color: var(--danger-color); background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: var(--border-radius); text-align: center; margin-top: 20px; }
+
+        /* Footer Styles */
+        #main-footer { background-color: #2c3e50; color: rgba(255, 255, 255, 0.8); padding: 60px 0 20px; margin-top: 70px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .footer-widget h4 { color: var(--white-color); font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; font-weight: 600; }
+        .footer-widget h4::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 40px; background-color: var(--primary-color); }
+        .footer-widget p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 15px; }
+        .footer-widget ul li { margin-bottom: 12px; }
+        .footer-widget ul li a { color: rgba(255, 255, 255, 0.8); font-size: 0.95rem; transition: color var(--transition-speed), padding-left var(--transition-speed); }
+        .footer-widget ul li a:hover { color: var(--white-color); padding-left: 5px; }
+        .footer-widget ul li a i { margin-right: 8px; width: 15px; color: var(--primary-color); }
+        .footer-contact-info i { margin-right: 10px; color: var(--primary-color); width: 20px; text-align: center; }
+        .footer-social-links a { color: rgba(255, 255, 255, 0.8); font-size: 1.4rem; margin-right: 15px; transition: color var(--transition-speed), transform var(--transition-speed); display: inline-block; }
+        .footer-social-links a:hover { color: var(--white-color); transform: scale(1.2); }
+        .footer-social-links a:last-child { margin-right: 0; }
+        .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 25px; text-align: center; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); }
+        .footer-bottom a { color: var(--info-color); font-weight: 500; }
+        .footer-bottom a:hover { color: var(--white-color); text-decoration: underline; }
+
+        /* Animations */
+        @keyframes rotateIcon { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive Design */
+        @media (max-width: 992px) { :root { --border-radius: 6px; } .section-title { font-size: 2rem; } .footer-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
+        @media (max-width: 768px) { h2 { font-size: 1.8rem; } .section-title { font-size: 1.9rem; margin-bottom: 40px; } section { padding: 50px 0; } #checkout-v2-section { padding-top: 30px; } .checkout-v2-wrapper { padding: 25px; } #main-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--white-color); box-shadow: 0 10px 20px rgba(0,0,0,0.1); flex-direction: column; max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, box-shadow 0.5s ease-out; } #main-nav.active { display: flex; max-height: 500px; } #main-nav ul { flex-direction: column; width: 100%; padding: 10px 0; } #main-nav ul li { margin: 0; text-align: left; } #main-nav ul li a { display: block; padding: 15px 25px; border-bottom: 1px solid #eee; } #main-nav ul li:last-child a { border-bottom: none; } #main-nav ul li a::after { display: none; } #main-nav ul li a:hover { background-color: #f8f9fa; color: var(--primary-color); } .menu-toggle { display: block; } .footer-grid { grid-template-columns: 1fr; gap: 25px; } .footer-widget { text-align: center; } .footer-widget h4::after { left: 50%; transform: translateX(-50%); } .footer-contact-info li { text-align: center; justify-content: center;} .footer-contact-info i { display: inline-block; width: auto; } }
+        @media (max-width: 576px) { :root { --border-radius: 4px; } .container { padding: 0 15px; } section { padding: 40px 0; } #checkout-v2-section { padding-top: 20px; } .section-title { font-size: 1.7rem; margin-bottom: 30px;} .section-title i { font-size: 1.6rem; } .checkout-v2-wrapper { padding: 20px 15px; } .order-summary-v2 li { flex-direction: column; align-items: flex-start; } .payment-methods { gap: 10px; } .payment-methods label { min-width: 80px; padding: 8px 10px; font-size: 0.9rem;} .payment-number-area strong { font-size: 1.1rem; } .copy-btn { margin-left: 5px; } .footer-grid { gap: 20px; } .footer-widget h4 { font-size: 1.1rem; } .footer-widget p, .footer-widget ul li a { font-size: 0.9rem; } .footer-bottom { font-size: 0.85rem; } }
+
+    </style>
+</head>
+<body class="checkout-v2-page">
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <div class="logo"><a href="index.html"> Your TopUp Center</a></div>
+            <nav id="main-nav">
+                 <ul>
+                    <li><a href="index.html#hero">হোম</a></li>
+                    <li><a href="products.html">প্রোডাক্টস</a></li>
+                    <li><a href="offers.html">অফার</a></li>
+                    <li><a href="#">ব্লগ</a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                
+                    <li><a href="contact.html">যোগাযোগ</a></li>
+                
+                    <li><a href="menu.html">U Tech</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Checkout V2 Section -->
+        <section id="checkout-v2-section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-credit-card"></i> পেমেন্ট ও তথ্য</h2>
+
+                <div class="checkout-v2-wrapper fade-in">
+                    <!-- Order Summary V2 -->
+                    <div class="order-summary-v2">
+                        <h3><i class="fas fa-receipt"></i> অর্ডারের সারসংক্ষেপ</h3>
+                        <ul>
+                            <li><span class="label">প্রোডাক্ট:</span> <span class="value" id="summary-v2-product">লোড হচ্ছে...</span></li>
+                            <li><span class="label">আইটেম:</span> <span class="value" id="summary-v2-item">লোড হচ্ছে...</span></li>
+                            <li><span class="label">প্লেয়ার আইডি:</span> <span class="value uid" id="summary-v2-uid">লোড হচ্ছে...</span></li>
+                            <li><span class="label">মোট মূল্য:</span> <span class="value" id="summary-v2-price">লোড হচ্ছে...</span></li>
+                        </ul>
+                    </div>
+                    <div id="error-message-container-v2" style="display: none;"><p class="error-message">দুঃখিত, অর্ডারের তথ্য পাওয়া যায়নি বা কুকি মেয়াদোত্তীর্ণ হয়ে গেছে। অনুগ্রহ করে <a href="products.html">প্রোডাক্ট পেজে</a> ফিরে যান।</p></div>
+                    <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+                    <!-- Client Details Form -->
+                    <div id="client-details-section" style="display: none;"> <!-- Initially hide if data loading fails -->
+                        <div class="form-section">
+                            <h4><i class="fas fa-user"></i> আপনার তথ্য</h4>
+                            <form id="client-details-form">
+                                <div class="form-group"><label for="clientName">আপনার নাম <span style="color:red;">*</span></label><input type="text" id="clientName" name="clientName" placeholder="সম্পূর্ণ নাম" required></div>
+                                <div class="form-group"><label for="clientNumber">মোবাইল নম্বর <span style="color:red;">*</span></label><input type="tel" id="clientNumber" name="clientNumber" placeholder="১১ সংখ্যার মোবাইল নম্বর" required pattern="01[3-9]\d{8}"><small>যে নম্বরে যোগাযোগ করা হতে পারে।</small></div>
+                                <div class="form-group"><label for="clientEmail">ইমেইল (ঐচ্ছিক)</label><input type="email" id="clientEmail" name="clientEmail" placeholder="example@email.com"></div>
+                                <div class="form-group"><label for="clientAddress">ঠিকানা (ঐচ্ছিক)</label><textarea id="clientAddress" name="clientAddress" placeholder="আপনার ঠিকানা"></textarea></div>
+                                <button type="button" id="proceed-btn" class="btn" disabled>পরবর্তী ধাপে যান <i class="fas fa-arrow-right"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                     <div id="payment-section" style="display:none;">
+                        <div class="form-section">
+                             <h4><i class="fas fa-money-check-alt"></i> পেমেন্ট পদ্ধতি</h4>
+                            <div class="terms-agreement"><input type="checkbox" id="termsAgree" name="termsAgree" required><label for="termsAgree">আমি <a href="terms.html" target="_blank">শর্তাবলী</a> এবং <a href="privacy.html" target="_blank">গোপনীয়তা নীতিমালায়</a> রাজি আছি।</label></div>
+                            <p style="text-align: center; margin-bottom: 15px; color: var(--secondary-color);">একটি পেমেন্ট পদ্ধতি নির্বাচন করুন:</p>
+                            <div class="payment-methods">
+                                <div><input type="radio" id="bkash" name="payment_method" value="Bkash" required><label for="bkash">বিকাশ</label></div>
+                                <div><input type="radio" id="nagad" name="payment_method" value="Nagad"><label for="nagad">নগদ</label></div>
+                                <div><input type="radio" id="rocket" name="payment_method" value="Rocket"><label for="rocket">রকেট</label></div>
+                            </div>
+                            <div id="payment-details-area" style="display:none;">
+                                <div id="bkash-details" class="payment-instruction" style="display: none;">
+                                    <h5><i class="fas fa-mobile-alt"></i> বিকাশ পেমেন্ট নির্দেশাবলী</h5>
+                                    <ol>
+                                        <li>আপনার বিকাশ অ্যাপে যান অথবা *247# ডায়াল করুন।</li>
+                                        <li>"Send Money" অপশন নির্বাচন করুন।</li>
+                                        <li>নিচের নম্বরটিতে <strong id="total-amount-bkash">৳ ০</strong> টাকা পাঠান:</li>
+                                        <li class="payment-number-area"><strong>01912107604</strong> (বিকাশ পার্সোনাল)<button type="button" class="copy-btn" data-clipboard-text="01912107604"><i class="fas fa-copy"></i> কপি</button></li>
+                                        <li>রেফারেন্সে আপনার নামের প্রথম অংশ দিন।</li>
+                                        <li>সফলভাবে টাকা পাঠানোর পর প্রাপ্ত TrxID নিচের বক্সে লিখুন।</li>
+                                    </ol>
+                                </div>
+                                <div id="nagad-details" class="payment-instruction" style="display: none;">
+                                     <h5><i class="fas fa-mobile-alt"></i> নগদ পেমেন্ট নির্দেশাবলী</h5>
+                                      <ol><li>আপনার নগদ অ্যাপে যান অথবা *167# ডায়াল করুন।</li><li>Send Money" অপশন নির্বাচন করুন।</li><li>নিচের নম্বরটিতে <strong id="total-amount-nagad">৳ ০</strong> টাকা পাঠান:</li><li class="payment-number-area"><strong>01781146747</strong> (নগদ পার্সোনাল)<button type="button" class="copy-btn" data-clipboard-text="01781146747"><i class="fas fa-copy"></i> কপি</button></li><li>রেফারেন্সে আপনার নামের প্রথম অংশ দিন।</li><li>সফলভাবে টাকা পাঠানোর পর প্রাপ্ত TrxID নিচের বক্সে লিখুন।</li></ol>
+                                </div>
+                                <div id="rocket-details" class="payment-instruction" style="display: none;">
+                                     <h5><i class="fas fa-mobile-alt"></i> রকেট পেমেন্ট নির্দেশাবলী</h5>
+                                     <ol><li>আপনার রকেট অ্যাপে যান অথবা *322# ডায়াল করুন।</li><li>Send Money" অপশন নির্বাচন করুন।</li><li>নিচের নম্বরটিতে <strong id="total-amount-rocket">৳ ০</strong> টাকা পাঠান:</li><li class="payment-number-area"><strong>01992944769</strong> (রকেট পার্সোনাল)<button type="button" class="copy-btn" data-clipboard-text="01992944769"><i class="fas fa-copy"></i> কপি</button></li><li>সফলভাবে টাকা পাঠানোর পর প্রাপ্ত TrxID নিচের বক্সে লিখুন।</li></ol>
+                                </div>
+                                <div class="form-group" id="trx-id-input"><label for="trxId">Transaction ID (TrxID) <span style="color:red;">*</span></label><input type="text" id="trxId" name="trxId" placeholder="TrxID এখানে দিন" required></div>
+                            </div>
+                            <button type="button" id="place-order-btn" class="btn" disabled>অর্ডার সম্পন্ন করুন <i class="fas fa-check-circle"></i></button>
+                        </div>
+                    </div>
+                    <div id="loading-indicator" style="display:none;"><i class="fas fa-spinner"></i> আপনার অর্ডার প্রসেস করা হচ্ছে...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                    <div class="footer-widget">
+                    <h4><i class="fas fa-info-circle"></i> Your TopUp Center</h4>
+                    <p>আপনার বিশ্বস্ত ডিজিটাল সেবার ঠিকানা। মোবাইল রিচার্জ, গেম টপ-আপ, বিল পেমেন্ট সহ আরো অনেক সেবা নিন সহজে ও নিরাপদে।</p>
+                    <div class="footer-social-links">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+<div class="footer-widget">
+                    <h4><i class="fas fa-link"></i> প্রয়োজনীয় লিংক</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
+                        
+                        <li><a href="products.html"><i class="fas fa-angle-right"></i> Products</a></li>
+       <li><a href="#"><i class="fas fa-angle-right"></i> Offer</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Blogs</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Reseller Platfrom</a></li>
+                        <li><a href="#blogs"><i class="fas fa-angle-right"></i> About</a></li>
+                         <li><a href="#"><i class="fas fa-angle-right"></i> Contact</a></li>
+                          <li><a href="#"><i class="fas fa-angle-right"></i> Tarms and Conditions</a></li>
+                           <li><a href="#"><i class="fas fa-angle-right"></i> Privacy and Policies</a></li>
+                           
+                                     <li><a href="#"><i class="fas fa-angle-right"></i> Menu</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-widget" id="footer-contact">
+                    <h4><i class="fas fa-address-book"></i> যোগাযোগ</h4>
+                    <ul class="footer-contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> শ্রীবরদী, শেরপুর, ময়মনসিংহ, বাংলাদেশ</li>
+                        <li><a href="tel:+8801781146747"><i class="fas fa-phone-alt"></i> +880 1781-146747</a></li>
+                        <li><a href="mailto:ffdiamondstorebd@gmail.com"><i class="fas fa-envelope"></i> ffdiamondstorebd@gmail.com</a></li>
+                        <li><i class="fab fa-facebook-f"></i><a href="#"></a>Facebook Page Chat</li>
+                        <li><i class="fab fa-whatsapp"></i><a href="">WhatsApp</a></li>
+                          <li><i class="fab fa-telegram"></i><a href="#">Telegram</a></li>
+                         <li><i class="fas fa-clock"></i> সাপোর্ট: ২৪/৭ খোলা</li>
+                    </ul>
+                </div>
+                 <div class="footer-widget">
+                    <h4><i class="fas fa-envelope-open-text"></i> নিউজলেটার</h4>
+                    <p>সর্বশেষ অফার এবং আপডেটের জন্য সাইন আপ করুন।</p>
+                    <form id="newsletter-form" style="display: flex;">
+                         <input type="email" placeholder="আপনার ইমেইল" required style="flex-grow: 1; padding: 10px; border: none; border-radius: 4px 0 0 4px; font-family: var(--body-font);">
+                         <button type="submit" class="btn" style="border-radius: 0 4px 4px 0; padding: 10px 15px; font-size: 1rem; box-shadow: none;"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                 </div>
+            </div>
+
+            <div class="footer-bottom">
+                কপিরাইট © <span id="current-year"></span> Your TopUp Center. সর্বস্বত্ব সংরক্ষিত। ভার্সন : 10.0 <br>
+                ডেভেলপড উইথ <i class="fas fa-heart" style="color: #e74c3c;"></i> বাই <a href="#" target="_blank" rel="noopener noreferrer">U Tech Web Solution</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Helper functions (getCookie, setCookie, deleteCookie)
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+            }
+            return null;
+        }
+        function setCookie(name, value, days) {
+            let expires = "";
+            // Use a shorter, specific expiry for checkout, e.g., 1 hour
+            const date = new Date();
+            if (days === -1) { // Deletion
+                 expires = "; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            } else { // Set 1 hour expiry if days is not -1
+                date.setTime(date.getTime() + (60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (encodeURIComponent(value) || "")  + expires + "; path=/";
+        }
+        function deleteCookie(name) {
+            setCookie(name, '', -1);
+        }
+
+        // ==================================
+        // !! SECURITY WARNING !! - REPLACE WITH YOUR DETAILS (USE BACKEND IN PRODUCTION)
+        // ==================================
+        const TELEGRAM_BOT_TOKEN = '7501055809:AAHybTQCakGqgj45Z88HzY3GdT7H-MhzC58'; // <-- REPLACE (INSECURE)
+        const TELEGRAM_CHAT_ID = '7945358964';     // <-- REPLACE (INSECURE)
+
+        // Async function to send message to Telegram
+         async function sendToTelegram(message) {
+            console.log("Preparing Telegram message...");
+            if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID || TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN') {
+                console.error("Telegram Bot Token or Chat ID is not configured.");
+                return Promise.reject("Telegram not configured.");
+            }
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            const params = { chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'HTML' };
+            try {
+                console.log("Sending fetch request to Telegram API...");
+                const response = await fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(params) });
+                const data = await response.json();
+                if (data.ok) {
+                    console.log("Telegram API Response OK:", data);
+                    return true;
+                } else {
+                    console.error("Telegram API Error:", data);
+                    return false;
+                }
+            } catch (error) {
+                console.error("Network/Fetch Error sending to Telegram:", error);
+                return false;
+            }
+        }
+
+
+        // DOMContentLoaded Event Listener
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Checkout V2 DOM Loaded - Running Full Script");
+
+            // --- Standard page setup ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            if (menuToggle && mainNav) {
+                 menuToggle.addEventListener('click', () => {
+                     mainNav.classList.toggle('active');
+                     const icon = menuToggle.querySelector('i');
+                     icon.classList.toggle('fa-bars');
+                     icon.classList.toggle('fa-times');
+                 });
+                 mainNav.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { if (mainNav.classList.contains('active')) { mainNav.classList.remove('active'); const icon = menuToggle.querySelector('i'); icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); } }); });
+                 document.addEventListener('click', (event) => { if (mainNav.classList.contains('active') && !mainNav.contains(event.target) && !menuToggle.contains(event.target)) { mainNav.classList.remove('active'); const icon = menuToggle.querySelector('i'); icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); } });
+            }
+
+            const body = document.body;
+            const header = document.getElementById('main-header');
+             if (header) {
+                const scrollThreshold = 50;
+                 window.addEventListener('scroll', () => { if (window.scrollY > scrollThreshold) { body.classList.add('scrolled'); } else { body.classList.remove('scrolled'); } });
+             }
+
+             const fadeElements = document.querySelectorAll('.fade-in');
+             if ("IntersectionObserver" in window && fadeElements.length > 0) {
+                const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
+                const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions);
+                fadeElements.forEach(el => observer.observe(el));
+            } else { fadeElements.forEach(el => el.classList.add('visible')); }
+
+             const yearSpan = document.getElementById('current-year');
+             if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+
+              const newsletterForm = document.getElementById('newsletter-form');
+              if(newsletterForm) { newsletterForm.addEventListener('submit', (e) => { e.preventDefault(); alert('ধন্যবাদ! আপনার ইমেইল সাবস্ক্রাইব করা হয়েছে (Placeholder)।'); newsletterForm.reset(); }); }
+
+
+            // --- Checkout V2 Page Logic ---
+            // Select ALL elements first
+            const orderSummaryList = document.querySelector('.order-summary-v2 ul');
+            const errorContainer = document.getElementById('error-message-container-v2');
+            const clientDetailsSection = document.getElementById('client-details-section');
+            const paymentSection = document.getElementById('payment-section');
+            const clientNameInput = document.getElementById('clientName');
+            const clientNumberInput = document.getElementById('clientNumber');
+            const clientEmailInput = document.getElementById('clientEmail');
+            const clientAddressInput = document.getElementById('clientAddress');
+            const proceedButton = document.getElementById('proceed-btn');
+            const termsCheckbox = document.getElementById('termsAgree');
+            const paymentMethodRadios = document.querySelectorAll('input[name="payment_method"]');
+            const paymentDetailsArea = document.getElementById('payment-details-area');
+            const trxIdInput = document.getElementById('trxId');
+            const placeOrderButton = document.getElementById('place-order-btn');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            const checkoutWrapper = document.querySelector('.checkout-v2-wrapper');
+            // Select specific summary elements by ID
+            const summaryV2Product = document.getElementById('summary-v2-product');
+            const summaryV2Item = document.getElementById('summary-v2-item');
+            const summaryV2Uid = document.getElementById('summary-v2-uid');
+            const summaryV2Price = document.getElementById('summary-v2-price');
+            const totalAmountBkash = document.getElementById('total-amount-bkash');
+            const totalAmountNagad = document.getElementById('total-amount-nagad');
+            const totalAmountRocket = document.getElementById('total-amount-rocket');
+
+
+            // Check if all essential elements exist
+             const essentialElementsExist = orderSummaryList && errorContainer && clientDetailsSection && paymentSection && clientNameInput && clientNumberInput && proceedButton && termsCheckbox && paymentDetailsArea && trxIdInput && placeOrderButton && loadingIndicator && checkoutWrapper && summaryV2Product && summaryV2Item && summaryV2Uid && summaryV2Price && totalAmountBkash && totalAmountNagad && totalAmountRocket;
+
+            if (!essentialElementsExist) {
+                console.error("CRITICAL ERROR: One or more essential HTML elements are missing or have incorrect IDs. Cannot proceed.");
+                if (errorContainer) {
+                     errorContainer.innerHTML = '<p class="error-message">পৃষ্ঠা লোড করার সময় একটি ত্রুটি ঘটেছে (DOM Error)। অনুগ্রহ করে রিফ্রেশ করুন।</p>';
+                     errorContainer.style.display = 'block';
+                }
+                 if(checkoutWrapper) checkoutWrapper.style.display = 'none'; // Hide everything
+                return; // Stop script execution
+            }
+            console.log("All essential elements found.");
+
+
+            let orderData = null;
+
+            // --- Load Order Summary ---
+            const orderDetailsCookie = getCookie('orderDetails');
+            console.log("Raw cookie value:", orderDetailsCookie);
+            if (orderDetailsCookie) {
+                try {
+                    orderData = JSON.parse(orderDetailsCookie);
+                    console.log("Parsed order data:", orderData);
+
+                    // Populate summary - Check if elements exist before setting textContent
+                    if (summaryV2Product) summaryV2Product.textContent = orderData.productName || 'N/A';
+                    if (summaryV2Item) summaryV2Item.textContent = orderData.itemName || 'N/A';
+                    if (summaryV2Uid) summaryV2Uid.textContent = orderData.uid || 'N/A';
+                    const priceText = `৳ ${orderData.price || 'N/A'}`;
+                    if (summaryV2Price) summaryV2Price.textContent = priceText;
+                    if (totalAmountBkash) totalAmountBkash.textContent = priceText;
+                    if (totalAmountNagad) totalAmountNagad.textContent = priceText;
+                    if (totalAmountRocket) totalAmountRocket.textContent = priceText;
+
+                    // Show the client details section now that data is loaded
+                    clientDetailsSection.style.display = 'block';
+
+                } catch (e) {
+                    console.error("Error parsing cookie:", e);
+                    orderData = null;
+                }
+            } else {
+                 console.warn("Order details cookie not found.");
+                 orderData = null;
+            }
+
+            // --- Handle Missing Order Data ---
+             if (!orderData) {
+                 console.log("Displaying error because orderData is null or cookie missing.");
+                 if(orderSummaryList) orderSummaryList.parentElement.style.display = 'none';
+                 errorContainer.style.display = 'block';
+                 clientDetailsSection.style.display = 'none';
+                 paymentSection.style.display = 'none';
+                 if (proceedButton) proceedButton.disabled = true;
+                 if (placeOrderButton) placeOrderButton.disabled = true;
+             } else {
+                  console.log("Order data available. Setting up form listeners.");
+                 // Hide error message if data is loaded
+                  errorContainer.style.display = 'none';
+
+                // --- Enable/Disable Logic Functions ---
+                const checkProceedEnable = () => {
+                     const nameValid = clientNameInput.value.trim() !== '';
+                     const numberPattern = /^01[3-9]\d{8}$/;
+                     const numberValid = numberPattern.test(clientNumberInput.value.trim());
+                     clientNumberInput.setCustomValidity(numberValid ? "" : "১১ সংখ্যার সঠিক মোবাইল নম্বর দিন (01...)");
+                     const shouldBeEnabled = nameValid && numberValid;
+                     proceedButton.disabled = !shouldBeEnabled;
+                 };
+
+                const checkEnablePlaceOrderButton = () => {
+                     const nameValid = clientNameInput.value.trim() !== '';
+                     const numberValid = /^01[3-9]\d{8}$/.test(clientNumberInput.value.trim());
+                     const termsChecked = termsCheckbox.checked;
+                     const paymentMethodSelected = document.querySelector('input[name="payment_method"]:checked');
+                     const trxIdEntered = trxIdInput.value.trim() !== '';
+                     placeOrderButton.disabled = !(orderData && nameValid && numberValid && termsChecked && paymentMethodSelected && trxIdEntered);
+                 };
+
+                // --- Add Event Listeners (only if orderData is valid) ---
+                clientNameInput.addEventListener('input', checkProceedEnable);
+                clientNumberInput.addEventListener('input', checkProceedEnable);
+                checkProceedEnable(); // Initial check
+
+                proceedButton.addEventListener('click', () => {
+                    if (proceedButton.disabled) return;
+                    console.log("Proceed button clicked.");
+                    clientDetailsSection.style.display = 'none';
+                    paymentSection.style.display = 'block';
+                    checkEnablePlaceOrderButton();
+                 });
+
+                 paymentMethodRadios.forEach(radio => {
+                     radio.addEventListener('change', () => {
+                         console.log("Payment method changed:", radio.value);
+                         document.querySelectorAll('.payment-instruction').forEach(div => div.style.display = 'none');
+                         const selectedDivId = `${radio.id}-details`;
+                         const selectedDiv = document.getElementById(selectedDivId);
+                         if (selectedDiv) {
+                             selectedDiv.style.display = 'block';
+                             paymentDetailsArea.style.display = 'block';
+                         } else {
+                             paymentDetailsArea.style.display = 'none';
+                         }
+                         checkEnablePlaceOrderButton();
+                     });
+                 });
+
+                 copyButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                          const textToCopy = button.dataset.clipboardText;
+                          navigator.clipboard.writeText(textToCopy).then(() => {
+                              const originalText = button.innerHTML;
+                              button.innerHTML = '<i class="fas fa-check"></i> কপি হয়েছে';
+                              button.disabled = true;
+                              setTimeout(() => { button.innerHTML = originalText; button.disabled = false; }, 1500);
+                          }).catch(err => { console.error('Copy failed: ', err); alert('কপি করতে সমস্যা হয়েছে।'); });
+                      });
+                 });
+
+                 termsCheckbox.addEventListener('change', checkEnablePlaceOrderButton);
+                 trxIdInput.addEventListener('input', checkEnablePlaceOrderButton);
+
+                 // --- Final Place Order Click ---
+                 placeOrderButton.addEventListener('click', async () => {
+                     console.log("Place order button clicked.");
+                     if (placeOrderButton.disabled) return;
+
+                     const selectedPaymentMethodElement = document.querySelector('input[name="payment_method"]:checked');
+                     if (!clientNameInput.checkValidity() || !clientNumberInput.checkValidity() || !termsCheckbox.checked || !selectedPaymentMethodElement || !trxIdInput.value.trim()) {
+                         alert('অনুগ্রহ করে সকল প্রয়োজনীয় তথ্য পূরণ করুন এবং শর্তাবলীতে রাজি হোন।');
+                         return;
+                     }
+
+                     console.log("Validation passed. Processing order...");
+                     checkoutWrapper.style.display = 'none';
+                     loadingIndicator.style.display = 'block';
+
+                     const orderId = `YT${Date.now()}`;
+                     const clientDetails = { name: clientNameInput.value.trim(), number: clientNumberInput.value.trim(), email: clientEmailInput.value.trim() || 'N/A', address: clientAddressInput.value.trim() || 'N/A' };
+                     const paymentDetails = { method: selectedPaymentMethodElement.value, trxId: trxIdInput.value.trim() };
+
+                      // Format message for Telegram
+                     const telegramMessage = `
+<b>🎉 নতুন অর্ডার এসেছে! 🎉</b>\n
+<b>অর্ডার আইডি:</b> ${orderId}
+-----------------------------------
+<b><u>প্রোডাক্ট বিবরণ</u></b>
+<b>প্রোডাক্ট:</b> ${orderData.productName}
+<b>আইটেম:</b> ${orderData.itemName}
+<b>মূল্য:</b> ৳ ${orderData.price}
+<b>প্লেয়ার আইডি:</b> <code>${orderData.uid}</code>
+-----------------------------------
+<b><u>গ্রাহকের তথ্য</u></b>
+<b>নাম:</b> ${clientDetails.name}
+<b>নম্বর:</b> <code>${clientDetails.number}</code>
+<b>ইমেইল:</b> ${clientDetails.email}
+<b>ঠিকানা:</b> ${clientDetails.address}
+-----------------------------------
+<b><u>পেমেন্ট বিবরণ</u></b>
+<b>মাধ্যম:</b> ${paymentDetails.method}
+<b>TrxID:</b> <code>${paymentDetails.trxId}</code>
+-----------------------------------
+<b>সময়:</b> ${new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })}
+                     `;
+
+                     try {
+                         const telegramSent = await sendToTelegram(telegramMessage);
+                         if (telegramSent) {
+                             console.log("Telegram sent. Deleting cookie, storing session data, redirecting...");
+                             deleteCookie('orderDetails');
+                             sessionStorage.setItem('lastOrderSuccessData', JSON.stringify({ orderId: orderId, itemName: orderData.itemName, price: orderData.price, uid: orderData.uid }));
+                             window.location.href = 'success.html';
+                         } else {
+                             throw new Error("Telegram API indicated failure.");
+                         }
+                     } catch (error) {
+                          console.error("Failed to process order:", error);
+                          alert('দুঃখিত, আপনার অর্ডারটি প্রসেস করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন বা সাপোর্টে যোগাযোগ করুন।');
+                          loadingIndicator.style.display = 'none';
+                          checkoutWrapper.style.display = 'block';
+                     }
+                 });
+
+                 // Initial check for place order button
+                  checkEnablePlaceOrderButton();
+
+             } // End of if(orderData) block
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>
