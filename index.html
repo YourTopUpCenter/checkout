@@ -1,303 +1,571 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Checkout to Your Order - Your TopUp Center | FF Diamond Store BD </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="আপনার বিশ্বস্ত অনলাইন ডিজিটাল গেম স্টোর Your TopUp Center  - এ আপনার প্রিয় গেম ক্রেডিট টপ-আপ করুন । ">
-    <meta name="keywords" content="Your TopUp Center, #ytc24, topup, free fire, gaming,  seller,">
-    <meta name="author" content="Ali Hosen">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Your TopUp Center">
-    <meta property="og:title" content=" Your TopUp Center">
-    <meta property="og:image" content="https://i.postimg.cc/Qx3wdSvM/Adobe-Express-20231213-2151070-1.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="https://i.postimg.cc/mD3qYHH4/Picsart-24-01-20-22-35-57-863.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>অর্ডার নিশ্চিত করুন - Your TopUp Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Cabin:ital,wght@0,400..700;1,400..700&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-    
-    
-    
-    <!---উপরের কিছু Edit করা লাগবে না---->
-    
+<link href="https://fonts.googleapis.com/css2?family=Mina:wght@400;700&display=swap" rel="stylesheet">
     <style>
-  
+        /* --- Global Styles & Variables --- */
+    
+        :root {
+            --primary-color: #006eff;
+            --secondary-color: #5a6a7e;
+            --success-color: #20c997;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --white-color: #ffffff;
+            --body-font: 'Mina', sans-serif;
+            --heading-font: 'Mina', sans-serif;
+            --transition-speed: 0.3s ease;
+            --border-radius: 12px; /* Slightly larger radius */
+            --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.06);
+            --box-shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+            --box-shadow-heavy: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: var(--body-font);
+            line-height: 1.7;
+            color: var(--dark-color);
+            /* Subtle gradient background for the entire page */
+            background: linear-gradient(to bottom, #f9faff, #f0f4f8);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            line-height: 1.3;
+        }
+        a { text-decoration: none; color: var(--primary-color); transition: color var(--transition-speed); }
+        a:hover { color: #004bbd; }
+        ul { list-style: none; padding-left: 0; }
+        img { max-width: 100%; height: auto; display: block; border-radius: var(--border-radius); }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 15px; }
+        section { padding: 70px 0; position: relative; overflow: hidden; }
+        #checkout-page-section { padding-top: 40px; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem; /* Larger title */
+            font-weight: 700;
+            color: #333;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .section-title i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 2.1rem; /* Slightly larger icon */
+            vertical-align: middle;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } } /* Keep heartbeat */
+        .section-title::after {
+            content: ''; position: absolute; display: block; width: 90px; height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--info-color));
+            bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block; padding: 14px 35px; /* Larger buttons */
+            background-image: linear-gradient(45deg, var(--primary-color) 0%, #0056b3 100%); /* Darker gradient */
+            color: var(--white-color); border: none; border-radius: 50px;
+            font-size: 1.05rem; /* Slightly larger font */
+            font-weight: 600; cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+            box-shadow: var(--box-shadow-medium);
+            text-transform: uppercase; letter-spacing: 0.8px;
+        }
+        .btn:hover {
+            background-image: linear-gradient(45deg, #004bbd 0%, var(--primary-color) 100%);
+            transform: translateY(-4px) scale(1.02); /* More pronounced hover */
+            box-shadow: var(--box-shadow-heavy);
+        }
+        .btn i {
+            margin-left: 10px; /* Space after text */
+            transition: transform 0.3s ease;
+        }
+         .btn:hover i {
+            transform: translateX(3px); /* Move icon slightly on hover */
+         }
+        .btn:disabled {
+            background-image: linear-gradient(45deg, #aabbc4 0%, #868e96 100%); /* Different disabled gradient */
+            cursor: not-allowed; box-shadow: none; transform: none;
+            opacity: 0.7;
+        }
+
+        /* --- Header Styles --- */
+        #main-header { background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); box-shadow: 0 3px 18px rgba(0, 0, 0, 0.07); padding: 12px 0; position: sticky; top: 0; z-index: 1000; transition: background-color var(--transition-speed), padding var(--transition-speed), box-shadow var(--transition-speed); }
+        body.scrolled #main-header { box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1); padding: 10px 0; }
+        #main-header .container { max-width: 1100px; display: flex; justify-content: space-between; align-items: center; }
+        .logo a { font-size: 1.9rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; transition: transform var(--transition-speed); }
+        .logo a:hover { transform: scale(1.03); }
+        .logo a i { margin-right: 10px; color: var(--success-color); font-size: 1.5rem; animation: rotateIcon 5s linear infinite; }
+        #main-nav ul { display: flex; flex-wrap: wrap; }
+        #main-nav ul li { margin-left: 28px; } /* Slightly more spacing */
+        #main-nav ul li a { color: var(--dark-color); font-weight: 600; padding: 8px 0; position: relative; transition: color var(--transition-speed), transform var(--transition-speed); letter-spacing: 0.3px; display: inline-block; /* For transform */}
+        #main-nav ul li a:hover { color: var(--primary-color); transform: translateY(-2px); } /* Subtle lift */
+        #main-nav ul li a.active { color: var(--primary-color); font-weight: 700; }
+        #main-nav ul li a.active::after, #main-nav ul li a:hover::after { content: ''; position: absolute; width: 100%; height: 3px; display: block; margin-top: 6px; left: 0; background: var(--primary-color); transition: width 0.4s ease-out, left 0.4s ease-out; border-radius: 2px; }
+        #main-nav ul li a::after { content: ''; position: absolute; width: 0; height: 3px; display: block; margin-top: 6px; right: 0; background: var(--primary-color); transition: width 0.4s ease-out, left 0.4s ease-out; border-radius: 2px; }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--dark-color); transition: color var(--transition-speed); }
+        .menu-toggle:hover { color: var(--primary-color); }
+
+        /* --- Checkout Page Specific Styles --- */
+        .checkout-summary-box {
+            background: var(--white-color); /* Solid white for contrast */
+            padding: 40px 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-heavy); /* Heavier shadow */
+            border: 1px solid #e0eafa;
+            margin-top: -10px;
+            position: relative; /* For pseudo elements */
+            overflow: hidden; /* Contain pseudo elements */
+        }
+         /* Optional: Decorative corner shapes */
+        .checkout-summary-box::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100px;
+             height: 100px;
+             background: linear-gradient(135deg, rgba(0, 110, 255, 0.1), transparent 70%);
+             border-radius: 0 0 var(--border-radius) 0;
+             z-index: 0;
+        }
+        .checkout-summary-box h3, #order-summary-details, #error-message-container, .checkout-actions {
+             position: relative; /* Keep content above pseudo element */
+             z-index: 1;
+        }
+
+        .checkout-summary-box h3 {
+            font-size: 1.9rem; /* Larger heading */
+            margin-bottom: 35px;
+            color: var(--primary-color);
+            text-align: center;
+            border-bottom: 1px solid #e0eafa;
+            padding-bottom: 20px;
+        }
+         .checkout-summary-box h3 i {
+             margin-right: 12px;
+             animation: spin 4s linear infinite reverse; /* Add subtle spin */
+         }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 10px; /* More vertical padding */
+            border-bottom: 1px solid #f0f4f8; /* Lighter separator */
+            font-size: 1.1rem;
+            transition: background-color 0.2s ease, transform 0.2s ease; /* Hover effect */
+        }
+         .summary-item:hover {
+             background-color: #f8fbff; /* Very light blue hover */
+             transform: translateX(5px); /* Shift right slightly on hover */
+         }
+        .summary-item:last-of-type {
+             border-bottom: none;
+             background-color: #f8f9fa; /* Different bg for last item */
+             margin: 15px -10px -10px -10px; /* Adjust negative margin */
+             padding: 18px 20px; /* Adjust padding */
+             border-radius: 0 0 var(--border-radius) var(--border-radius); /* Round bottom corners */
+        }
+        .summary-item .label {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+         /* Label Icons */
+        .summary-item .label::before {
+             font-family: "Font Awesome 6 Free"; font-weight: 900; margin-right: 10px;
+             color: var(--primary-color); opacity: 0.7; font-size: 1em; width: 20px; text-align: center;
+        }
+        .summary-item .label[for="summary-product"]::before { content: "\f466"; }
+        .summary-item .label[for="summary-item"]::before { content: "\f005"; }
+        .summary-item .label[for="summary-uid"]::before { content: "\f2c2"; }
+        .summary-item .label[for="summary-price"]::before { content: "\f156"; }
+
+        .summary-item .value {
+            font-weight: 600; /* Bolder values */
+            color: var(--dark-color);
+            text-align: right;
+        }
+         .summary-item .value.price {
+             font-weight: 700;
+             color: var(--success-color);
+             font-size: 1.3em; /* Emphasize price more */
+         }
+         .summary-item .value.uid {
+             font-weight: 700;
+             color: var(--primary-color);
+             background-color: #e9f5ff;
+             padding: 3px 8px;
+             border-radius: 5px;
+             word-break: break-all;
+             border: 1px dashed var(--primary-color); /* Dashed border */
+         }
+
+         .checkout-actions {
+             margin-top: 40px;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             gap: 20px;
+             flex-wrap: wrap;
+             border-top: 1px solid #e0eafa;
+             padding-top: 30px;
+         }
+          .checkout-actions .btn-cancel {
+             background-image: none;
+             background-color: var(--secondary-color);
+             box-shadow: 0 4px 10px rgba(90, 106, 126, 0.3);
+             color: var(--white-color);
+             transition: all var(--transition-speed);
+          }
+           .checkout-actions .btn-cancel:hover {
+             background-color: #495057;
+             transform: translateY(-3px) scale(1.02); /* Add hover effect */
+             box-shadow: 0 6px 15px rgba(90, 106, 126, 0.4);
+          }
+          .checkout-actions .btn i { /* Icons on left for action buttons */
+              margin-right: 8px;
+              margin-left: 0;
+          }
+           /* Style confirm button more prominently */
+           #confirm-order-btn {
+              background-image: linear-gradient(45deg, var(--success-color) 0%, #1a9973 100%);
+               box-shadow: 0 5px 15px rgba(32, 201, 151, 0.4);
+           }
+            #confirm-order-btn:hover {
+               background-image: linear-gradient(45deg, #17a680 0%, var(--success-color) 100%);
+                box-shadow: 0 8px 20px rgba(32, 201, 151, 0.5);
+            }
+
+
+        /* Error Message Style */
+        .error-message { color: var(--danger-color); background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: var(--border-radius); text-align: center; margin-top: 20px; font-weight: 500; }
+
+        /* --- Footer Styles --- */
+         #main-footer { background-color: #2c3e50; color: rgba(255, 255, 255, 0.8); padding: 60px 0 20px; margin-top: 70px; }
+         #main-footer .container { max-width: 1100px; }
+         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 40px; }
+         .footer-widget h4 { color: var(--white-color); font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; font-weight: 600; }
+         .footer-widget h4::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 40px; background-color: var(--primary-color); }
+         .footer-widget p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 15px; }
+         .footer-widget ul li { margin-bottom: 12px; }
+         .footer-widget ul li a { color: rgba(255, 255, 255, 0.8); font-size: 0.95rem; transition: color var(--transition-speed), padding-left var(--transition-speed); }
+         .footer-widget ul li a:hover { color: var(--white-color); padding-left: 5px; }
+         .footer-widget ul li a i { margin-right: 8px; width: 15px; color: var(--primary-color); }
+         .footer-contact-info i { margin-right: 10px; color: var(--primary-color); width: 20px; text-align: center; }
+         .footer-social-links a { color: rgba(255, 255, 255, 0.8); font-size: 1.4rem; margin-right: 15px; transition: color var(--transition-speed), transform var(--transition-speed); display: inline-block; }
+         .footer-social-links a:hover { color: var(--white-color); transform: scale(1.2); }
+         .footer-social-links a:last-child { margin-right: 0; }
+         .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 25px; text-align: center; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); }
+         .footer-bottom a { color: var(--info-color); font-weight: 500; }
+         .footer-bottom a:hover { color: var(--white-color); text-decoration: underline; }
+
+        /* --- Animations --- */
+         @keyframes rotateIcon { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } /* Added spin */
+         .fade-in { opacity: 0; transition: opacity 0.8s ease-out; }
+         .fade-in.visible { opacity: 1; }
+         @keyframes heartbeat { /* Keep heartbeat */ }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+             :root { --border-radius: 10px; }
+             .footer-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        }
+        @media (max-width: 768px) {
+             .checkout-summary-box { padding: 30px 25px; }
+             .summary-item { font-size: 1rem; padding: 12px 5px; }
+             .summary-item .label { font-size: 0.95rem; }
+             .summary-item .value.price { font-size: 1.1em; }
+             /* Mobile Nav styles */
+             #main-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--white-color); box-shadow: 0 10px 20px rgba(0,0,0,0.1); flex-direction: column; max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, box-shadow 0.5s ease-out; }
+             #main-nav.active { display: flex; max-height: 500px; }
+             #main-nav ul { flex-direction: column; width: 100%; padding: 10px 0; }
+             #main-nav ul li { margin: 0; text-align: left; }
+             #main-nav ul li a { display: block; padding: 15px 25px; border-bottom: 1px solid #eee; }
+             #main-nav ul li:last-child a { border-bottom: none; }
+             #main-nav ul li a::after { display: none; }
+             #main-nav ul li a:hover { background-color: #f8f9fa; color: var(--primary-color); }
+             .menu-toggle { display: block; }
+             .footer-grid { grid-template-columns: 1fr; }
+             .footer-widget { text-align: center; }
+             .footer-widget h4::after { left: 50%; transform: translateX(-50%); }
+             .footer-contact-info li { justify-content: center;}
+             .footer-contact-info i { width: auto; }
+        }
+        @media (max-width: 576px) {
+            .checkout-summary-box { padding: 25px 20px; }
+             .summary-item { flex-direction: column; align-items: flex-start; padding: 10px 0; }
+             .summary-item .label { margin-bottom: 5px; }
+             .summary-item .value { text-align: left; font-size: 1.05rem; }
+             .checkout-actions { justify-content: center; flex-direction: column; gap: 15px; }
+             .checkout-actions .btn { width: 100%; max-width: 280px; margin-bottom: 0; }
+             /* Footer mobile styles */
+              .footer-widget h4 { font-size: 1.1rem; }
+              .footer-widget p, .footer-widget ul li a { font-size: 0.9rem; }
+              .footer-bottom { font-size: 0.85rem; }
+        }
+
     </style>
 </head>
-<body>
-    
-    
-    
+<body class="checkout-page">
+
     <!-- Header -->
-<section class="header">
-    <nav id="navbar">
-        <a href="https://yourtopupcenter.github.io/home">
-            <img src="https://i.postimg.cc/Pxjg6DpL/Picsart-24-01-20-22-35-57-863.png">
-        </a>
-        <div class="nav-links">
-            <i class="fa fa-bars" id="menu-icon" onclick="toggleMenu()"></i>
-            <ul id="navMenu">
-                <li><a href="https://yourtopupcenter.github.io/home">HOME</a></li>
-                <li><a href="https://yourtopupcenter.github.io/products">PRODUCTS</a></li>
-                <li><a href="https://yourtopupcenter.github.io/offers">OFFER</a></li>
-                <li><a href="https://yourtopupcenter.github.io/blogs">BLOGS</a></li>
-                <li><a href="https://yourtopupcenter.github.io/about">ABOUT</a></li>
-                <li><a href="https://yourtopupcenter.github.io/contact">CONTACT US</a></li>
-            </ul>
+    <header id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"> Your TopUp Center</a>
+            </div>
+            <nav id="main-nav">
+                 <ul>
+                    <li><a href="index.html#hero">হোম</a></li>
+                    <li><a href="products.html">প্রোডাক্টস</a></li>
+                    <li><a href="offers.html">অফার</a></li>
+                    <li><a href="#">ব্লগ </a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                 
+                    <li><a href="contact.html">যোগাযোগ</a></li>
+                <li><a href="#">U Tech</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
-    </nav>
+    </header>
 
-    <div class="text-box">
-        <h1>Checkout</h1>
-    </div>
-    <br><br>
-      <div class="scroll-down">
-        <div class="scroll-text">Scroll Down</div>
-        <div class="arrow"></div>
-    </div>
-</section>
+    <main>
+        <!-- Checkout Confirmation Section -->
+        <section id="checkout-page-section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-receipt"></i> অর্ডার নিশ্চিত করুন</h2>
 
+                <div class="checkout-summary-box fade-in">
+                    <h3><i class="fas fa-clipboard-list"></i> আপনার অর্ডারের বিবরণ</h3>
 
-<!-- End Of Header -->
-    
-    
-    
-    
-    
-    
-    
-    
-     <div class="checkout-container">
-        <h1>Checkout</h1>
-        <p><strong>Product Name :</strong> <span id="checkout-product-name"></span></p>
-        <p><strong>Item Name :</strong> <span id="checkout-item-name"></span></p>
-        <p><strong>Price :</strong> <span id="checkout-price"></span></p>
-        <p><strong>UID :</strong> <span id="checkout-uid"></span></p>
-        <button id="confirm-purchase-btn"><i class="fa-solid fa-circle-check"></i> &nbsp; Confirm Purchase</button>
+                    <div id="order-summary-details">
+                        <div class="summary-item">
+                            <span class="label" for="summary-product">প্রোডাক্ট</span>
+                            <span class="value" id="summary-product">লোড হচ্ছে...</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label" for="summary-item">আইটেম</span>
+                            <span class="value" id="summary-item">লোড হচ্ছে...</span>
+                        </div>
+                         <div class="summary-item">
+                            <span class="label" for="summary-uid">প্লেয়ার আইডি</span>
+                            <span class="value uid" id="summary-uid">লোড হচ্ছে...</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label" for="summary-price">মূল্য</span>
+                            <span class="value price" id="summary-price">লোড হচ্ছে...</span>
+                        </div>
+                    </div>
 
-        <div class="form-section" id="customer-form-section">
-            <h2>Customer Information</h2>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+                    <div id="error-message-container" style="display: none;">
+                         <p class="error-message">দুঃখিত, অর্ডারের তথ্য খুঁজে পাওয়া যায়নি। অনুগ্রহ করে <a href="freefire.html">পূর্বের পেজে</a> ফিরে গিয়ে আবার চেষ্টা করুন।</p>
+                    </div>
 
-            <label for="phone">Phone Number:</label>
-            <input type="number" id="phone" name="phone" required>
+                     <div class="checkout-actions">
+                         <button onclick="window.history.back();" class="btn btn-cancel">
+                             <i class="fas fa-arrow-left"></i> বাতিল করুন
+                         </button>
+                         <button id="confirm-order-btn" class="btn" disabled>
+                            <i class="fas fa-check-circle"></i> নিশ্চিত করে পেমেন্টে যান
+                         </button>
+                     </div>
 
-            <label for="email">Email (Optional):</label>
-            <input type="email" id="email" name="email">
+                </div> <!-- /.checkout-summary-box -->
+            </div> <!-- /.container -->
+        </section> <!-- /#checkout-page-section -->
 
-            <label for="address">Address (Optional):</label>
-            <input type="text" id="address" name="address">
-
-            <button id="next-process-btn"><i class="fa-solid fa-circle-arrow-right"></i> &nbsp; Next Process</button>
-        </div>
-
-        <div class="payment-section" id="payment-section">
-            <h2>Payment Options</h2>
-            <p>Total Payment: <strong><span id="payment-amount"></span></strong> BDT</p>
-
-            <div class="payment-method">
-                <label>
-                    <input type="radio" name="payment-method" value="bkash"> bKash
-                </label>
-            </div>
-            <div class="payment-method">
-                <label>
-                    <input type="radio" name="payment-method" value="nagad"> Nagad
-                </label>
-            </div>
-            <div class="payment-method">
-                <label>
-                    <input type="radio" name="payment-method" value="rocket"> Rocket
-                </label>
-            </div>
-
-            <div class="payment-steps" id="payment-steps">
-                <h3>Follow the steps :</h3>
-                <p>1. Open your mobile banking app.</p>
-                <p>2. Select the "Send Money" option.</p>
-                <p>3. Enter the following number: <span id="payment-number"></span>
-                    <span class="copy-number" onclick="copyNumber()">Copy</span>
-                </p>
-                <p>4. Enter the amount: <strong><span id="payment-amount-step"></span> BDT</strong>.</p>
-                <p>5. Enter a reference (if necessary).</p>
-                <p>6. Confirm the transaction.</p>
-                <p>7. Enter your TrxID below:</p>
-                <div class="trx-input">
-                    <input type="text" id="trx-id" placeholder="Enter TrxID" required>
-                </div>
-                <p>8. Submit your payment.</p>
-                <button id="order-btn" style="display:none;"><i class="fa-solid fa-cart-shopping"></i> &nbsp; Order</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="loading-overlay" id="loading-overlay">
-        <div class="loading-spinner"></div>
-    </div>
+    </main>
 
 
-        
-<section class="faq">
-    <div class="faq-container">
-        <div class="faq-header">Frequently Asked Questions</div>
-        <div class="faq-item">
-            <div class="faq-question"><b>অর্ডার কমপ্লিট করতে কতক্ষণ সময় লাগবে ? </b></div>
-            <div class="faq-answer">
-                আমরা সাধারণত ৫ থেকে ১০ মিনিটের মধ্যে অর্ডার কমপ্লিট করে থাকি, কিন্তু কোনো যান্ত্রিক অথবা অন্যান্য ক্রুটির কারণে ১ ঘন্টাও লাগতে পারে ! 
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question"><b>আমি কীভাবে আমার অর্ডার ট্র্যাক করব ? </b></div>
-            <div class="faq-answer">
-               যেহেতু অর্ডার করতে কোনো রেজিস্ট্রেশন লাগে না ।  তাই আপনি অর্ডার সাবমিট করার পরে একটি অর্ডার টোকেন পাবেন, ওই অর্ডার টোকেনটি আপনি আমাদের যে কোনো প্ল্যাটফ্রমে মেসেজ করলেই আমরা অর্ডারের স্টাটাস জানিয়ে দিবো !  আর এমনিতেও খুব কম সময়ে অর্ডার কমপ্লিট হয়ে যায় । 
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question"><b>আমি কি রিফান্ড পেতে পারি ?</b></div>
-            <div class="faq-answer">
-                যদি কোনও কারণে অর্ডারটি সম্পন্ন করা সম্ভব না হয়, তবে আপনার অর্থ ফেরত দেওয়া হবে। তবে আমাদের রিফান্ড নীতিমালা অনুযায়ী, কিছু ক্ষেত্রে রিফান্ড প্রক্রিয়া প্রযোজ্য নাও হতে পারে ।
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question"><b>আমি যদি ভুল তথ্য দিয়ে অর্ডার করি তাহলে কী হবে ?</b></div>
-            <div class="faq-answer">
-                যদি ভুল তথ্য দিয়ে অর্ডার করা হয়, তাহলে দ্রুত আমাদের সাথে যোগাযোগ করুন। আমরা চেষ্টা করবো অর্ডারটি ঠিক করার বা ক্যান্সেল করার ।
-            </div>
-        </div>
-    </div>
-</section>
-  
-    
-    
-    
-    
-    
-    
-    
- 
-    
-    
- 
-<section class="support">
-<div class="support-container">
-    <div class="icon-wrapper" id="callIcon">
-        <a href="tel:+880 1781-146747" class="icon-call" title="Call"><i class="fas fa-phone-alt"></i></a>
-    </div>
-    <div class="icon-wrapper" id="whatsappIcon">
-        <a href="https://wa.me/+8801781146747" target="_blank" class="icon-whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    </div>
-    <div class="icon-wrapper" id="telegramIcon">
-        <a href="https://t.me/YTC24_bot" target="_blank" class="icon-telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-    </div>
-    <div class="icon-wrapper" id="messengerIcon">
-        <a href="https://m.me/yourtopupcenterofficial" target="_blank" class="icon-messenger" title="Messenger"><i class="fab fa-facebook-messenger"></i></a>
-    </div>
-    <div class="support-icon" id="supportIcon">
-        <i class="fas fa-headset"></i>
-    </div>
-</div>
-
-<!-- Up Button -->
-<div class="up-button" id="upButton">
-    <i class="fas fa-arrow-up"></i>
-</div>
-
-</section>
-
-    
-    
-    <section class="popup">
-<div class="popup-container" id="popup">
-    <div class="popup-content">
-        Don’t miss out on exclusive offers! <a href="https://t.me/yourtopupcenter" style="color: #3bff00;"><b>Click Hear!</b></a>
-    </div>
-    <button class="close-btn" id="closePopup">&times;</button>
-</div>
-
-</section>
-    
-    
-    
-    
-    
     <!-- Footer -->
-    
-    
-    
-<section class="mfooter">
-    
-    <footer class="footer">
-        <div class="company-info">
-            <img src="https://i.postimg.cc/xCB0dHGy/b295bb43-9ccd-47e2-aebd-900434a0a0fb.jpg" alt="Your TopUp Center">
-            <h1>Your TopUp Center</h1>
-        </div>
-        <div class="footer-container">
-            <div class="footer-section about-us">
-                <h2>About Us</h2>
-                <p id="fro">Top-up your favorite game credits at " Your TopUp Center " , your trusted online digital game store. You get your game credits fast in just 5 - 10 minutes. You can order by following just a few steps. Buy safely online with Nagad, bKash, Rocket. Our " Your TopUp Center " platform is a safe and reliable platform.</p>
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                    <div class="footer-widget">
+                    <h4><i class="fas fa-info-circle"></i> Your TopUp Center</h4>
+                    <p>আপনার বিশ্বস্ত ডিজিটাল সেবার ঠিকানা। মোবাইল রিচার্জ, গেম টপ-আপ, বিল পেমেন্ট সহ আরো অনেক সেবা নিন সহজে ও নিরাপদে।</p>
+                    <div class="footer-social-links">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+<div class="footer-widget">
+                    <h4><i class="fas fa-link"></i> প্রয়োজনীয় লিংক</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
+                        
+                        <li><a href="products.html"><i class="fas fa-angle-right"></i> Products</a></li>
+       <li><a href="#"><i class="fas fa-angle-right"></i> Offer</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Blogs</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Reseller Platfrom</a></li>
+                        <li><a href="#blogs"><i class="fas fa-angle-right"></i> About</a></li>
+                         <li><a href="#"><i class="fas fa-angle-right"></i> Contact</a></li>
+                          <li><a href="#"><i class="fas fa-angle-right"></i> Tarms and Conditions</a></li>
+                           <li><a href="#"><i class="fas fa-angle-right"></i> Privacy and Policies</a></li>
+                           
+                                     <li><a href="#"><i class="fas fa-angle-right"></i> Menu</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-widget" id="footer-contact">
+                    <h4><i class="fas fa-address-book"></i> যোগাযোগ</h4>
+                    <ul class="footer-contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> শ্রীবরদী, শেরপুর, ময়মনসিংহ, বাংলাদেশ</li>
+                        <li><a href="tel:+8801781146747"><i class="fas fa-phone-alt"></i> +880 1781-146747</a></li>
+                        <li><a href="mailto:ffdiamondstorebd@gmail.com"><i class="fas fa-envelope"></i> ffdiamondstorebd@gmail.com</a></li>
+                        <li><i class="fab fa-facebook-f"></i><a href="#"></a>Facebook Page Chat</li>
+                        <li><i class="fab fa-whatsapp"></i><a href="">WhatsApp</a></li>
+                          <li><i class="fab fa-telegram"></i><a href="#">Telegram</a></li>
+                         <li><i class="fas fa-clock"></i> সাপোর্ট: ২৪/৭ খোলা</li>
+                    </ul>
+                </div>
+                 <div class="footer-widget">
+                    <h4><i class="fas fa-envelope-open-text"></i> নিউজলেটার</h4>
+                    <p>সর্বশেষ অফার এবং আপডেটের জন্য সাইন আপ করুন।</p>
+                    <form id="newsletter-form" style="display: flex;">
+                         <input type="email" placeholder="আপনার ইমেইল" required style="flex-grow: 1; padding: 10px; border: none; border-radius: 4px 0 0 4px; font-family: var(--body-font);">
+                         <button type="submit" class="btn" style="border-radius: 0 4px 4px 0; padding: 10px 15px; font-size: 1rem; box-shadow: none;"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                 </div>
             </div>
-            <div class="footer-section contact-info">
-                <h2>Contact Information</h2>
-                <p>Email : <a href="mailto:ffdiamondstorebd@gmail.com" target="_blank" style="text-decoration: none; color: #fff;">ffdiamondstorebd@gmail.com</a></p>
-                <p>Phone : <a href="tel:+880 1781-146747" style="text-decoration: none; color: #fff;">+880 17811-46747</a></p>
-                <p>Address : <a href="https://maps.app.goo.gl/DQpiKEpmaRjnwb9U7" target="_blank" style="text-decoration: none; color: #fff;">Tarakandi, Sribordi, Sherpur, Mymensingh, Bangladesh</a></p>
-                <p>Support : <a href="https://t.me/YTC24_bot" target="_blank" style="text-decoration: none; color: #fff;">Telegram &nbsp <i class="fas fa-external-link-alt"></i></a></p>
+
+            <div class="footer-bottom">
+                কপিরাইট © <span id="current-year"></span> Your TopUp Center. সর্বস্বত্ব সংরক্ষিত। ভার্সন : 10.0 <br>
+                ডেভেলপড উইথ <i class="fas fa-heart" style="color: #e74c3c;"></i> বাই <a href="#" target="_blank" rel="noopener noreferrer">U Tech Web Solution</a>
             </div>
-            <div class="footer-section important-links">
-                <h2>Important Links</h2>
-                <ul>
-                    <li><a href="https://yourtopupcenter.github.io/home" id="fr">Home</a></li>
-                    <li><a href="https://yourtopupcenter.github.io/products" id="fr">Products</a></li>
-                    <li><a href="https://yourtopupcenter.github.io/offers" id="fr">Offer</a></li>
-                    <li><a href="https://yourtopupcenter.github.io/reseller" id="fr">Reseller Platform</a></li>
-                    
-                    <li><a href="https://yourtopupcenter.github.io/about" id="fr">About</a></li>
-                    <li><a href="https://yourtopupcenter.github.io/contact" id="fr">Contact Us</a></li>
-                    <li><a href="https://yourtopupcenter.github.io/terms" id="fr">Terms and Conditions</a></li>
-                    <li><a href="https://yourtopupcenter.github.io/privacy" id="fr">Privacy Policies</a></li>
-                    <li><a href="https://yourtopupcenter.github.io/menu" id="fr">Menu</a></li>
-                </ul>
-            </div>
-            <div class="footer-section social-media">
-                <h2>Social Media</h2>
-                <ul class="social-icons">
-                    <li><a href="https://www.facebook.com/yourtopupcenterofficial" target="_blank" ><i class="fab fa-facebook"></i></a></li>   
-                    <li><a href="https://wa.me/message/O5T2K7VX66VUP1" target="_blank"><i class="fab fa-whatsapp"></i></a></li>             
-                    <li><a href="https://www.instagram.com/yourtopupcenterofficial" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="https://x.com/yourtopupcenter" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="https://www.youtube.com/@techwithahofficial" target="_blank"><i class="fab fa-youtube"></i></a></li>
-                    <li><a href="https://t.me/yourtopupcenterofficial" target="_blank"><i class="fab fa-telegram"></i></a></li>
-                    <li><a href="https://www.tiktok.com/yourtopupcenter" target="_blank"><i class="fab fa-tiktok"></i></a></li>
-                    
-                    <li><a href="https://yourtopupcenter.github.io/redirect/facebook"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://yourtopupcenter.github.io/redirect/whatsappgroup"><i class="fab fa-whatsapp"></i></a></li>
-                    <li><a href="https://yourtopupcenter.github.io/redirect/telegram"><i class="fab fa-telegram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p id="fro">&copy; 2022 - 2024 Your TopUp Center | All Rights Reserved | V 5 | Devloper : <a href="https://alihosenofficial.github.io" style="color: #fff;" target="_blank">Ali Hosen</a></p>
         </div>
     </footer>
-</section>
+    <script>
+        // Helper function to get a cookie
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) {
+                    return decodeURIComponent(c.substring(nameEQ.length, c.length));
+                }
+            }
+            return null;
+        }
+
+        // Standard JS
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Menu Toggle ---
+             const menuToggle = document.getElementById('menu-toggle');
+             const mainNav = document.getElementById('main-nav');
+              if (menuToggle && mainNav) {
+                  menuToggle.addEventListener('click', () => { mainNav.classList.toggle('active'); const icon = menuToggle.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); });
+                  mainNav.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { if (mainNav.classList.contains('active')) { mainNav.classList.remove('active'); const icon = menuToggle.querySelector('i'); icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); } }); });
+                  document.addEventListener('click', (event) => { if (mainNav.classList.contains('active') && !mainNav.contains(event.target) && !menuToggle.contains(event.target)) { mainNav.classList.remove('active'); const icon = menuToggle.querySelector('i'); icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); } });
+             }
+
+             // --- Header Shadow on Scroll ---
+             const body = document.body;
+             const header = document.getElementById('main-header');
+              if (header) { const scrollThreshold = 50; window.addEventListener('scroll', () => { if (window.scrollY > scrollThreshold) { body.classList.add('scrolled'); } else { body.classList.remove('scrolled'); } }); }
+
+             // --- Animate on Scroll ---
+             const fadeElements = document.querySelectorAll('.fade-in');
+             if ("IntersectionObserver" in window && fadeElements.length > 0) {
+                 const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -20px 0px" };
+                 const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions);
+                 fadeElements.forEach(el => observer.observe(el));
+             } else { fadeElements.forEach(el => el.classList.add('visible')); }
 
 
+             // --- Set Current Year in Footer ---
+             const yearSpan = document.getElementById('current-year');
+             if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
 
-<!-- End Of Footer -->
+              // --- Newsletter Form Placeholder ---
+              const newsletterForm = document.getElementById('newsletter-form');
+               if(newsletterForm) { newsletterForm.addEventListener('submit', (e) => { e.preventDefault(); alert('ধন্যবাদ! আপনার ইমেইল সাবস্ক্রাইব করা হয়েছে (Placeholder)।'); newsletterForm.reset(); }); }
 
 
+            // --- Checkout Page Logic ---
+            const orderSummaryDiv = document.getElementById('order-summary-details');
+            const errorContainer = document.getElementById('error-message-container');
+            const confirmButton = document.getElementById('confirm-order-btn');
+            const summaryProductEl = document.getElementById('summary-product');
+            const summaryItemEl = document.getElementById('summary-item');
+            const summaryUidEl = document.getElementById('summary-uid');
+            const summaryPriceEl = document.getElementById('summary-price');
 
+            // Check if elements exist
+            const elementsExist = orderSummaryDiv && errorContainer && confirmButton && summaryProductEl && summaryItemEl && summaryUidEl && summaryPriceEl;
 
-  
-  <script src="script.js"></script>
+            if (!elementsExist) {
+                console.error("Checkout Page: One or more essential summary elements are missing.");
+                if(errorContainer) errorContainer.style.display = 'block';
+                if(confirmButton) confirmButton.disabled = true;
+                return;
+            }
 
+            const orderDetailsCookie = getCookie('orderDetails');
+            console.log("Checkout Cookie:", orderDetailsCookie);
 
+            if (orderDetailsCookie) {
+                try {
+                    const orderData = JSON.parse(orderDetailsCookie);
+                    console.log("Parsed Checkout Data:", orderData);
+
+                    summaryProductEl.textContent = orderData.productName || 'N/A';
+                    summaryItemEl.textContent = orderData.itemName || 'N/A';
+                    summaryUidEl.textContent = orderData.uid || 'N/A';
+                    summaryPriceEl.textContent = `৳ ${orderData.price || 'N/A'}`;
+
+                    confirmButton.disabled = false;
+                    errorContainer.style.display = 'none';
+                    console.log("Data displayed, button enabled.");
+
+                    confirmButton.addEventListener('click', function() {
+                        console.log('Order Confirmed, redirecting to checkout-v2.html');
+                        window.location.href = 'checkout-v2.html';
+                    });
+
+                } catch (e) {
+                    console.error("Error parsing order details cookie:", e);
+                    orderSummaryDiv.style.display = 'none';
+                    errorContainer.style.display = 'block';
+                    confirmButton.disabled = true;
+                }
+            } else {
+                 console.error('Order details cookie was NOT found by getCookie function.');
+                 orderSummaryDiv.style.display = 'none';
+                 errorContainer.style.display = 'block';
+                 confirmButton.disabled = true;
+            }
+             console.log("Checkout logic finished.");
+        });
+    </script>
 
 </body>
-        </html>
+</html>
