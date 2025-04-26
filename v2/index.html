@@ -111,7 +111,8 @@
         .error-message { color: var(--danger-color); background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: var(--border-radius); text-align: center; margin-top: 20px; }
 
         /* Footer Styles */
-        #main-footer { background-color: #2c3e50; color: rgba(255, 255, 255, 0.8); padding: 60px 0 20px; margin-top: 70px; }
+        #main-footer { background-color: #000000;
+background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%); color: rgba(255, 255, 255, 0.8); padding: 60px 0 20px; margin-top: 70px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 40px; }
         .footer-widget h4 { color: var(--white-color); font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; font-weight: 600; }
         .footer-widget h4::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 40px; background-color: var(--primary-color); }
@@ -145,18 +146,18 @@
     <!-- Header -->
     <header id="main-header">
         <div class="container">
-            <div class="logo"><a href="index.html"> Your TopUp Center</a></div>
+            <div class="logo"><a href="/"> Your TopUp Center</a></div>
             <nav id="main-nav">
                  <ul>
-                    <li><a href="index.html#hero">হোম</a></li>
-                    <li><a href="products.html">প্রোডাক্টস</a></li>
-                    <li><a href="offers.html">অফার</a></li>
-                    <li><a href="#">ব্লগ</a></li>
-                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="/">হোম</a></li>
+                    <li><a href="/products">প্রোডাক্টস</a></li>
+                    <li><a href="/offers">অফার</a></li>
+                    <li><a href="/blogs">ব্লগ</a></li>
+                    <li><a href="/about">আমাদের সম্পর্কে</a></li>
                 
-                    <li><a href="contact.html">যোগাযোগ</a></li>
+                    <li><a href="/contact">যোগাযোগ</a></li>
                 
-                    <li><a href="menu.html">U Tech</a></li>
+                    <li><a href="https://utech-llc.github.io">U Tech</a></li>
                 </ul>
             </nav>
             <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
@@ -201,7 +202,7 @@
                      <div id="payment-section" style="display:none;">
                         <div class="form-section">
                              <h4><i class="fas fa-money-check-alt"></i> পেমেন্ট পদ্ধতি</h4>
-                            <div class="terms-agreement"><input type="checkbox" id="termsAgree" name="termsAgree" required><label for="termsAgree">আমি <a href="terms.html" target="_blank">শর্তাবলী</a> এবং <a href="privacy.html" target="_blank">গোপনীয়তা নীতিমালায়</a> রাজি আছি।</label></div>
+                            <div class="terms-agreement"><input type="checkbox" id="termsAgree" name="termsAgree" required><label for="termsAgree">আমি <a href="/terms" target="_blank">শর্তাবলী</a> এবং <a href="/privacy" target="_blank">গোপনীয়তা নীতিমালায়</a> রাজি আছি।</label></div>
                             <p style="text-align: center; margin-bottom: 15px; color: var(--secondary-color);">একটি পেমেন্ট পদ্ধতি নির্বাচন করুন:</p>
                             <div class="payment-methods">
                                 <div><input type="radio" id="bkash" name="payment_method" value="Bkash" required><label for="bkash">বিকাশ</label></div>
@@ -239,36 +240,37 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer id="main-footer">
+      <!-- Footer -->
+        <footer id="main-footer">
         <div class="container">
             <div class="footer-grid">
-                    <div class="footer-widget">
+                <div class="footer-widget">
                     <h4><i class="fas fa-info-circle"></i> Your TopUp Center</h4>
                     <p>আপনার বিশ্বস্ত ডিজিটাল সেবার ঠিকানা। মোবাইল রিচার্জ, গেম টপ-আপ, বিল পেমেন্ট সহ আরো অনেক সেবা নিন সহজে ও নিরাপদে।</p>
                     <div class="footer-social-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/yourtopupcenterofficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com/@techwithahofficial?si=S317t17KNYjqGcKl" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/yourtopupcenterofficial" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/yourtopupcenter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://t.me/YTC24_bot" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-telegram"></i></a>
                     </div>
                 </div>
 
-<div class="footer-widget">
+                <div class="footer-widget">
                     <h4><i class="fas fa-link"></i> প্রয়োজনীয় লিংক</h4>
                     <ul>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
+                        <li><a href="/home"><i class="fas fa-angle-right"></i> Home</a></li>
                         
-                        <li><a href="products.html"><i class="fas fa-angle-right"></i> Products</a></li>
-       <li><a href="#"><i class="fas fa-angle-right"></i> Offer</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Blogs</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Reseller Platfrom</a></li>
-                        <li><a href="#blogs"><i class="fas fa-angle-right"></i> About</a></li>
-                         <li><a href="#"><i class="fas fa-angle-right"></i> Contact</a></li>
-                          <li><a href="#"><i class="fas fa-angle-right"></i> Tarms and Conditions</a></li>
-                           <li><a href="#"><i class="fas fa-angle-right"></i> Privacy and Policies</a></li>
+                        <li><a href="/products"><i class="fas fa-angle-right"></i> Products</a></li>
+       <li><a href="/offers"><i class="fas fa-angle-right"></i> Offer</a></li>
+                        <li><a href="/blogs"><i class="fas fa-angle-right"></i> Blogs</a></li>
+                        <li><a href="/resller"><i class="fas fa-angle-right"></i> Reseller Platfrom</a></li>
+                        <li><a href="/about"><i class="fas fa-angle-right"></i> About</a></li>
+                         <li><a href="/contact"><i class="fas fa-angle-right"></i> Contact</a></li>
+                          <li><a href="/terms"><i class="fas fa-angle-right"></i> Tarms and Conditions</a></li>
+                           <li><a href="/privacy"><i class="fas fa-angle-right"></i> Privacy and Policies</a></li>
                            
-                                     <li><a href="#"><i class="fas fa-angle-right"></i> Menu</a></li>
+                                     <li><a href="/menu"><i class="fas fa-angle-right"></i> Menu</a></li>
                     </ul>
                 </div>
 
@@ -278,12 +280,13 @@
                         <li><i class="fas fa-map-marker-alt"></i> শ্রীবরদী, শেরপুর, ময়মনসিংহ, বাংলাদেশ</li>
                         <li><a href="tel:+8801781146747"><i class="fas fa-phone-alt"></i> +880 1781-146747</a></li>
                         <li><a href="mailto:ffdiamondstorebd@gmail.com"><i class="fas fa-envelope"></i> ffdiamondstorebd@gmail.com</a></li>
-                        <li><i class="fab fa-facebook-f"></i><a href="#"></a>Facebook Page Chat</li>
-                        <li><i class="fab fa-whatsapp"></i><a href="">WhatsApp</a></li>
-                          <li><i class="fab fa-telegram"></i><a href="#">Telegram</a></li>
+                        <li><i class="fab fa-facebook-messenger"></i><a href="https://m.me/yourtopupcenterofficial"></a>Messenger Chat</li>
+                        <li><i class="fab fa-whatsapp"></i><a href="https://w.me/+8801781146747">WhatsApp</a></li>
+                          <li><i class="fab fa-telegram"></i><a href="https://t.me/YTC24_bot">Telegram</a></li>
                          <li><i class="fas fa-clock"></i> সাপোর্ট: ২৪/৭ খোলা</li>
                     </ul>
                 </div>
+
                  <div class="footer-widget">
                     <h4><i class="fas fa-envelope-open-text"></i> নিউজলেটার</h4>
                     <p>সর্বশেষ অফার এবং আপডেটের জন্য সাইন আপ করুন।</p>
@@ -295,11 +298,13 @@
             </div>
 
             <div class="footer-bottom">
-                কপিরাইট © <span id="current-year"></span> Your TopUp Center. সর্বস্বত্ব সংরক্ষিত। ভার্সন : 10.0 <br>
-                ডেভেলপড উইথ <i class="fas fa-heart" style="color: #e74c3c;"></i> বাই <a href="#" target="_blank" rel="noopener noreferrer">U Tech Web Solution</a>
+                কপিরাইট © <span id="current-year"></span> Your TopUp Center. সর্বস্বত্ব সংরক্ষিত। একটি <a href="https://utech-llc.github.io">U Tech</a> এর ব্র্যান্ড  | ভার্সন : 10.3<br>
+                ডেভেলপড উইথ <i class="fas fa-heart" style="color: #e74c3c;"></i> বাই <a href="https://utech-llc.github.io/webux" target="_blank" rel="noopener noreferrer">WebUX Solution</a>
             </div>
         </div>
     </footer>
+
+
 
     <script>
         // Helper functions (getCookie, setCookie, deleteCookie)
@@ -603,7 +608,7 @@
                              console.log("Telegram sent. Deleting cookie, storing session data, redirecting...");
                              deleteCookie('orderDetails');
                              sessionStorage.setItem('lastOrderSuccessData', JSON.stringify({ orderId: orderId, itemName: orderData.itemName, price: orderData.price, uid: orderData.uid }));
-                             window.location.href = 'success.html';
+                             window.location.href = '/checkout/success';
                          } else {
                              throw new Error("Telegram API indicated failure.");
                          }
